@@ -1,25 +1,28 @@
 import './styles/normilize.scss';
-import { Routes, Route, Navigate } from 'react-router-dom';
-
-import Typography from '@mui/material/Typography';
 import { AppConfigWrapper } from './common/components/AppConfigWrapper';
 import { Header } from './common/components/Header';
 import { Footer } from './common/components/Footer';
+import { AppRoutes } from './navigations/router';
+import { useEffect, useState } from 'react';
 
 
 const App = () =>  {
+  const [ isAuth, setAuth ] = useState<{ isDiaAuth?: boolean }>({ isDiaAuth: false });
+  const token = localStorage.getItem('hackaton:auth');
+
+  useEffect(()=> {
+    const parseToken= JSON.parse( token || '{}');
+
+    setAuth(parseToken);
+  },[ token ]);
+
+
   return (
     <AppConfigWrapper>
       <>
-        <Header/>
-        <Routes>
-          <Route path='/' element={<div style={{ height: '100' }}>
-            <Typography variant='h2' color='primary' >test</Typography>
-          </div>} />
-
-          <Route path='*' element={<Navigate to='/' />} />
-        </Routes>
-        <Footer/>
+        { isAuth.isDiaAuth && <Header/>}
+        <AppRoutes/>
+        { isAuth.isDiaAuth && <Footer/>}
       </>
     </AppConfigWrapper>
   );

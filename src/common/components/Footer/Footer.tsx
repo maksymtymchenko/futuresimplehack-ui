@@ -9,7 +9,7 @@ const StyledLink = styled(Link)({
 
 export const Footer = () => {
   return (
-    <AppBar position='fixed' color='secondary' sx={{ top: 'auto', bottom: 0, height: '88px', padding: '30px 80px' }}>
+    <AppBar position='fixed' color='primary' sx={{ top: 'auto', bottom: 0, height: '88px', padding: '30px 80px' }}>
       <Grid container display='flex' justifyContent='space-between'>
         <Grid container display='flex' justifyContent='space-between'>
           <Grid item xs={6} spacing={3} container>

@@ -1,8 +1,6 @@
 import {
   Box,
   Button,
-  ButtonGroup,
-  Dialog,
   DialogActions,
   DialogContent,
   Popover,
@@ -11,7 +9,7 @@ import {
   IconButton, styled
 } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import InvertColorsIcon from '@mui/icons-material/InvertColors';
 import RotateLeftIcon from '@mui/icons-material/RotateLeft';

@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { NavLink } from 'react-router-dom';
 
-import logo from '../../static/futurePerfectLogo.png';
+import logo from '../../static/images/futurePerfectLogo.png';
 import { SettingsDialog } from '../SettingsDialog';
 
 

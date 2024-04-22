@@ -1,9 +1,9 @@
 export const mainPalette = {
   primary: {
-    main: '#04C65D'
+    main: 'rgba(0, 0, 0, 1)'
   },
   secondary: {
-    main: 'rgba(0, 0, 0, 1)'
+    main: 'rgba(149, 149, 149, 1)\n'
   },
   background: {
     default: '#fff'
