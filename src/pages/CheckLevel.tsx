@@ -1,13 +1,13 @@
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import { PieChart } from '@mui/x-charts/PieChart';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import { Button, Checkbox, Grid, styled } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import diagram from '../common/static/images/diagram.png';
 import { useNavigate } from 'react-router-dom';
 
 interface TabPanelProps {
@@ -95,7 +95,22 @@ export const CheckLevel =() => {
     return (
       <Grid container direction='column' alignItems='center' pt={12} >
         <Grid item mb={2}>
-          <img src={diagram}/>
+          <PieChart
+            colors={[ '#007EFF', '#AA2B8E', '#FFDB4D', '#89DB33', '#FF3800' ]}
+            series={[
+              {
+                data: [
+                  { id: 0, value: 25, label: 'Grammar' },
+                  { id: 1, value: 25, label: 'Reading' },
+                  { id: 2, value: 25, label: 'Listening' },
+                  { id: 3, value: 12, label: 'Writing' },
+                  { id: 4, value: 13, label: 'Speaking' }
+                ]
+              }
+            ]}
+            width={500}
+            height={300}
+          />
         </Grid>
         <Grid item mb={2}>
           <Typography variant='h2'>Вітаємо з успішним проходженням тесту!
