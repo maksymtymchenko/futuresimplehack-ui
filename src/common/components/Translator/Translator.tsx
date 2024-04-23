@@ -1,14 +1,18 @@
 import * as React from 'react';
-import axios from 'axios';
 import { Grid, Paper, Typography, TextField, IconButton } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useHttpClient } from '../../hooks/useHttpClient';
+import { API_URL } from '../../constants';
 
 export const Translator = () => {
-  const [ firstSectionFirst, setFirstSectionFirst ] = React.useState<boolean>(true);
+  const [ firstSectionFirst, setFirstSectionFirst ] = useState<boolean>(true);
   const [ enInputValue, setEnInputValue ] = useState<string>('');
   const [ ukInputValue, setUkInputValue ] = useState<string>('');
+
+  const { sendRequest } = useHttpClient();
+
 
   const toggleSectionOrder = () => {
     setFirstSectionFirst(prevState => !prevState);
@@ -25,16 +29,19 @@ export const Translator = () => {
     }
   };
 
-  const generateApiUrl = (endpoint: string) => `https://futuresimplehack-api.onrender.com/api/${ endpoint }`;
-
   const translateWord = async () => {
     try {
-      const response = await axios.post(generateApiUrl('dictionaries'), {
-        originalWord: enInputValue
+      const response = await sendRequest({
+        method: 'POST',
+        url: `${ API_URL }/dictionaries`,
+        data: {
+          originalWord: enInputValue
+        }
       });
 
-      if(!response || !response.data) throw new Error('No data for this word');
-      const { translatedWord } = response.data;
+      if(!response) throw new Error('No data for this word');
+
+      const { translatedWord } = response;
 
       setUkInputValue(translatedWord);
     } catch (e) {
@@ -43,14 +50,14 @@ export const Translator = () => {
   };
 
   return (
-    <Grid container spacing={2} alignItems='center'>
+    <Grid container spacing={2} alignItems='center' style={{  width: 750 }}>
       <Grid item xs={12}>
         <Typography variant='h2'>Перекладач</Typography>
       </Grid>
       {firstSectionFirst ? (
         <>
-          <Grid item xs={12} sm={6}>
-            <Paper elevation={0} style={{ padding: 20, border: '1px solid #ccc', height: '300px' }}>
+          <Grid item xs={12} sm={6} sx={{ maxWidth: 250 }}>
+            <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '300px', width: 250 }}>
               <Typography variant='h3'>English</Typography>
               <TextField
                 variant='filled'
@@ -67,7 +74,7 @@ export const Translator = () => {
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Paper elevation={0} style={{ padding: 20, border: '1px solid #ccc', height: '300px' }}>
+            <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '300px', width: 250 }}>
               <Typography variant='h3'>Ukrainian</Typography>
               <TextField
                 variant='filled'
@@ -85,7 +92,7 @@ export const Translator = () => {
       ) : (
         <>
           <Grid item xs={12} sm={6}>
-            <Paper elevation={0} style={{ padding: 20, border: '1px solid #ccc', height: '300px' }}>
+            <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '300px', width: 250 }}>
               <Typography variant='h3'>Ukrainian</Typography>
               <TextField
                 variant='filled'
@@ -99,7 +106,7 @@ export const Translator = () => {
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Paper elevation={0} style={{ padding: 20, border: '1px solid #ccc', height: '300px' }}>
+            <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '300px', width: 250 }}>
               <Typography variant='h3'>English</Typography>
               <TextField
                 variant='filled'
@@ -114,7 +121,7 @@ export const Translator = () => {
           </Grid>
         </>
       )}
-      <Grid item xs={12} style={{ textAlign: 'center' }}>
+      <Grid item xs={11} style={{ textAlign: 'center' }}>
         <IconButton  style={{ backgroundColor: 'black', color: 'white', borderRadius: '50%', width: '50px', height: '50px' }}  color='primary' onClick={toggleSectionOrder}>
           <Grid container direction='column' alignItems='center'>
             <ArrowForwardIcon />
