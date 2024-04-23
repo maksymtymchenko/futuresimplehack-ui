@@ -9,11 +9,11 @@ import { Button, Checkbox, Grid, styled } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import { useNavigate } from 'react-router-dom';
-import {useHttpClient} from "../common/hooks/useHttpClient";
-import {API_URL, LOCALSTORAGE_AUTH_KEY} from "../common/constants";
-import {useAuthLocalStorage} from "../common/hooks/useAuthLocalStorage";
-import {AnswerItem} from "../common/components/UI/AnswerItem";
-import {PageLoader} from "../common/components/PageLoader";
+import { useHttpClient } from '../common/hooks/useHttpClient';
+import { API_URL, LOCALSTORAGE_AUTH_KEY } from '../common/constants';
+import { useAuthLocalStorage } from '../common/hooks/useAuthLocalStorage';
+import { AnswerItem } from '../common/components/UI/AnswerItem';
+import { PageLoader } from '../common/components/PageLoader';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -59,41 +59,41 @@ export const CheckLevel =() => {
   const [ isHasResult, setIsHasResult ] = useState(false);
   const [ question, setQuestion ] = useState<{id: string,sentence?: string, options?: any[]}[]>([]);
 
-  const { setToStorage } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY)
+  const { setToStorage } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
   const { loading, sendRequest } = useHttpClient();
 
   const fetchData = async () => {
     try {
-      const data = await sendRequest({ method: 'GET', url: `${API_URL}/sentences` });
+      const data = await sendRequest({ method: 'GET', url: `${ API_URL }/sentences` });
 
       setQuestion(data);
     } catch (error){
-      console.error(error)
+      console.error(error);
     }
   };
 
   useEffect( () => {
-    fetchData()
+    fetchData();
   }, []);
 
   useEffect(() => {
     if (value === 3){
-      setIsHasResult(true)
+      setIsHasResult(true);
     }
-  }, [value]);
+  }, [ value ]);
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   const handleSave = () => {
-    setToStorage({ isAuth: true , isInstallSpecialSettings: true, isHasLevel: true })
+    setToStorage({ isAuth: true , isInstallSpecialSettings: true, isHasLevel: true });
 
-    navigate('/program')
+    navigate('/program');
   };
 
   if (loading){
-    return <PageLoader/>
+    return <PageLoader/>;
   }
 
 
@@ -139,7 +139,7 @@ export const CheckLevel =() => {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange}>
-          {question?.map((item, index) =>  <Tab label={String(index+1)} sx={{ width: '25%'}}  {...a11yProps(index)} />)}
+          {question?.map((item, index) =>  <Tab label={String(index+1)} sx={{ width: '25%' }}  {...a11yProps(index)} />)}
         </Tabs>
       </Box>
       {question?.map((item, index) => ( <CustomTabPanel value={value} index={index}>

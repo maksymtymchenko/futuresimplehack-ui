@@ -2,10 +2,10 @@ import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import { Grid, Link, styled, SvgIcon } from '@mui/material';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import Typography from "@mui/material/Typography";
+import Typography from '@mui/material/Typography';
 
-import DiaWhiteLogo from '../../static/images/diaWhileLogo.png'
-import UkraineWhiteLogo from '../../static/images/UkraineWhiteLogo.png'
+import DiaWhiteLogo from '../../static/images/diaWhileLogo.png';
+import UkraineWhiteLogo from '../../static/images/UkraineWhiteLogo.png';
 
 const StyledLink = styled(Link)({
   color: 'rgba(255, 255, 255, 1)\n'

@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Link, styled } from '@mui/material';
+import { Button, Grid, Link, styled } from '@mui/material';
 
 import FutureSimpleLogoMain from './../common/static/images/FutureSimpleLogoMain.svg';
 import SimpleLogo from './../common/static/images/SimpleLogo.png';
@@ -7,10 +7,9 @@ import Typography from '@mui/material/Typography';
 import React from 'react';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { SettingsDialog } from "../common/components/SettingsDialog";
-import {LOCALSTORAGE_AUTH_KEY} from "../common/constants";
-import {useAuthLocalStorage} from "../common/hooks/useAuthLocalStorage";
-import {useNavigate} from "react-router-dom";
+import { SettingsDialog } from '../common/components/SettingsDialog';
+import { LOCALSTORAGE_AUTH_KEY } from '../common/constants';
+import { useAuthLocalStorage } from '../common/hooks/useAuthLocalStorage';
 
 
 const StyledLink = styled(Link)({
@@ -24,19 +23,18 @@ const StyledButton = styled(Button)({
 });
 
 export const Auth = () => {
-  const navigate = useNavigate()
-  const { setToStorage } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY)
+  const { setToStorage } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
 
   const handleAuth = () => {
-    setToStorage({ isAuth: true, isInstallSpecialSettings: false, isHasLevel: false })
+    setToStorage({ isAuth: true, isInstallSpecialSettings: false, isHasLevel: false });
 
     // mock auth reloading
-    window.location.reload()
+    window.location.reload();
   };
 
 
   return  (<Grid container>
-    <Grid item container direction='column' position='relative'  xs={6} sx={{ height: '100vh',background: 'radial-gradient(129.89% 100% at 100% 100%, #DEEFD7 0%, #B6D8ED 49.82%, #D1E2EF 100%)'}}>
+    <Grid item container direction='column' position='relative'  xs={6} sx={{ height: '100vh',background: 'radial-gradient(129.89% 100% at 100% 100%, #DEEFD7 0%, #B6D8ED 49.82%, #D1E2EF 100%)' }}>
       <Grid item p={3} mb={24}>
         <SettingsDialog />
       </Grid>
@@ -62,8 +60,8 @@ export const Auth = () => {
     <Grid item xs={6} sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Grid container direction='column' spacing={3} >
         <Grid item display='flex' justifyContent='center' gap={3}>
-          <img src={SimpleLogo} style={{width: '120px', height:' 120px'}}/>
-          <img src={DiaBlackLogo} style={{width: '120px', height:' 120px'}}/>
+          <img src={SimpleLogo} style={{ width: '120px', height:' 120px' }}/>
+          <img src={DiaBlackLogo} style={{ width: '120px', height:' 120px' }}/>
         </Grid>
         <Grid item display='flex' justifyContent='center'>
           <Typography variant='h5'>Авторизуйтесь для входу в кабінет</Typography>
@@ -73,6 +71,6 @@ export const Auth = () => {
         </Grid>
       </Grid>
     </Grid>
-  </Grid>)
+  </Grid>);
 
 };

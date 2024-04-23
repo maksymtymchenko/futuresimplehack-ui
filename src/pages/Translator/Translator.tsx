@@ -3,8 +3,8 @@ import { Grid, Paper, Typography, TextField, IconButton } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useState } from 'react';
-import { useHttpClient } from '../../hooks/useHttpClient';
-import { API_URL } from '../../constants';
+import { API_URL } from '../../common/constants';
+import { useHttpClient } from '../../common/hooks/useHttpClient';
 
 export const Translator = () => {
   const [ firstSectionFirst, setFirstSectionFirst ] = useState<boolean>(true);

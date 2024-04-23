@@ -15,7 +15,7 @@ import RotateLeftIcon from '@mui/icons-material/RotateLeft';
 import { AppSettingsContext } from '../../context/AppSettingsContext';
 import CloseIcon from '@mui/icons-material/Close';
 
-import EyeIcon from '../../static/images/EyeIcon.png'
+import EyeIcon from '../../static/images/EyeIcon.png';
 
 const StyledButton = styled(Button)({
   color: 'rgba(0, 0, 0, 1)',
@@ -47,7 +47,7 @@ export const SettingsDialog = () => {
   const handleCloseDialog = (event: any) => setAnchorEl(null);
 
   return <>
-    <StyledButton onClick={handleClickDialog} startIcon={<img src={EyeIcon} alt="Eye icon"/>}>
+    <StyledButton onClick={handleClickDialog} startIcon={<img src={EyeIcon} alt='Eye icon'/>}>
       Людям з порушенням зору
     </StyledButton>
     <Popover

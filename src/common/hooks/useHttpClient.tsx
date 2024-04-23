@@ -1,9 +1,9 @@
-import {useState} from "react";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
 
 export const useHttpClient = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<any>(null);
+  const [ loading, setLoading ] = useState(false);
+  const [ error, setError ] = useState<any>(null);
 
   const sendRequest = async (config: object) => {
     try {

@@ -1,6 +1,6 @@
-import {useState} from "react";
-import {Box, Checkbox} from "@mui/material";
-import Typography from "@mui/material/Typography";
+import { useState } from 'react';
+import { Box, Checkbox } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 // border: 2px solid;
 //
@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 
 
 export const AnswerItem = ({ title }: { title: string}) => {
-  const [checked, setChecked] = useState(false);
+  const [ checked, setChecked ] = useState(false);
 
   const handleClick = () => {
     setChecked(!checked);
@@ -36,4 +36,4 @@ export const AnswerItem = ({ title }: { title: string}) => {
       <Typography>{title}</Typography>
     </Box>
   );
-}
+};

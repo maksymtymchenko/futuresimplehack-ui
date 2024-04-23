@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import {Box, Button, Checkbox, Grid, styled} from '@mui/material';
+import { Box, Button, Checkbox, Grid, styled } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useNavigate } from 'react-router-dom';
-import {API_URL, LOCALSTORAGE_AUTH_KEY} from "../common/constants";
-import {useAuthLocalStorage} from "../common/hooks/useAuthLocalStorage";
-import {PageLoader} from "../common/components/PageLoader";
-import {useHttpClient} from "../common/hooks/useHttpClient";
-import {AnswerItem} from "../common/components/UI/AnswerItem";
+import { API_URL, LOCALSTORAGE_AUTH_KEY } from '../common/constants';
+import { useAuthLocalStorage } from '../common/hooks/useAuthLocalStorage';
+import { PageLoader } from '../common/components/PageLoader';
+import { useHttpClient } from '../common/hooks/useHttpClient';
+import { AnswerItem } from '../common/components/UI/AnswerItem';
 
 const StyledButton = styled(Button)({
   padding: '10px 30px',
@@ -16,8 +16,8 @@ const StyledButton = styled(Button)({
 });
 
 export const SpecialSettings = ( ) => {
-  const navigate = useNavigate()
-  const { setToStorage } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY)
+  const navigate = useNavigate();
+  const { setToStorage } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
   const { loading, sendRequest } = useHttpClient();
 
   const [ isSelectSettings, setIsSelectSettings ] = useState(false);
@@ -27,12 +27,12 @@ export const SpecialSettings = ( ) => {
     try {
       const data = await sendRequest({
         method: 'GET',
-        url: `${API_URL}/sentences/6626163c31d714ab051d2f3e`,
+        url: `${ API_URL }/sentences/6626163c31d714ab051d2f3e`
       });
 
       setQuestion(data);
     } catch (error){
-      console.error(error)
+      console.error(error);
     }
   };
 
@@ -45,13 +45,13 @@ export const SpecialSettings = ( ) => {
   };
 
   const handleSave = () => {
-    setToStorage({ isAuth: true , isInstallSpecialSettings: true, isHasLevel: false })
+    setToStorage({ isAuth: true , isInstallSpecialSettings: true, isHasLevel: false });
 
-    navigate('/check-level')
+    navigate('/check-level');
   };
 
   if (loading){
-    return <PageLoader/>
+    return <PageLoader/>;
   }
 
   return (

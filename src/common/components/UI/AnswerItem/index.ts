@@ -1,1 +1,1 @@
-export { AnswerItem } from './AnswerItem'
+export { AnswerItem } from './AnswerItem';
