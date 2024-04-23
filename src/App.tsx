@@ -3,26 +3,19 @@ import { AppConfigWrapper } from './common/components/AppConfigWrapper';
 import { Header } from './common/components/Header';
 import { Footer } from './common/components/Footer';
 import { AppRoutes } from './navigations/router';
-import { useEffect, useState } from 'react';
+import {useAuthLocalStorage} from "./common/hooks/useAuthLocalStorage";
+import {LOCALSTORAGE_AUTH_KEY} from "./common/constants";
 
 
 const App = () =>  {
-  const [ isAuth, setAuth ] = useState<{ isDiaAuth?: boolean }>({ isDiaAuth: false });
-  const token = localStorage.getItem('hackaton:auth');
-
-  useEffect(()=> {
-    const parseToken= JSON.parse( token || '{}');
-
-    setAuth(parseToken);
-  },[ token ]);
-
+  const { authStore, } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY)
 
   return (
     <AppConfigWrapper>
       <>
-        { isAuth.isDiaAuth && <Header/>}
+        { authStore.isAuth && <Header/>}
         <AppRoutes/>
-        { isAuth.isDiaAuth && <Footer/>}
+        { authStore.isAuth  && <Footer/>}
       </>
     </AppConfigWrapper>
   );

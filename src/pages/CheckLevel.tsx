@@ -9,6 +9,11 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import diagram from '../common/static/images/diagram.png';
 import { useNavigate } from 'react-router-dom';
+import {useHttpClient} from "../common/hooks/useHttpClient";
+import {API_URL, LOCALSTORAGE_AUTH_KEY} from "../common/constants";
+import {useAuthLocalStorage} from "../common/hooks/useAuthLocalStorage";
+import {AnswerItem} from "../common/components/UI/AnswerItem";
+import {PageLoader} from "../common/components/PageLoader";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -54,41 +59,42 @@ export const CheckLevel =() => {
   const [ isHasResult, setIsHasResult ] = useState(false);
   const [ question, setQuestion ] = useState<{id: string,sentence?: string, options?: any[]}[]>([]);
 
+  const { setToStorage } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY)
+  const { loading, sendRequest } = useHttpClient();
+
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://futuresimplehack-api.onrender.com/api/sentences');
+      const data = await sendRequest({ method: 'GET', url: `${API_URL}/sentences` });
 
-      if (response.status){
-        setQuestion(response.data);
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
+      setQuestion(data);
+    } catch (error){
+      console.error(error)
     }
   };
 
   useEffect( () => {
-    fetchData();
-
-    if(value === 2){
-      setIsHasResult(true);
-    }
+    fetchData()
   }, []);
 
   useEffect(() => {
-    if(value === 2){
-      setIsHasResult(true);
+    if (value === 3){
+      setIsHasResult(true)
     }
-  }, [ value ]);
+  }, [value]);
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   const handleSave = () => {
-    localStorage.setItem('hackaton:auth', JSON.stringify({ isDiaAuth: true , isInstallSpecialSettings: true, isHasLevel: true }));
+    setToStorage({ isAuth: true , isInstallSpecialSettings: true, isHasLevel: true })
 
-    navigate('/program');
+    navigate('/program')
   };
+
+  if (loading){
+    return <PageLoader/>
+  }
 
 
   if (isHasResult){
@@ -117,26 +123,21 @@ export const CheckLevel =() => {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} >
-          <Tab  {...a11yProps(0)} />
-          <Tab  {...a11yProps(1)} />
-          <Tab {...a11yProps(2)} />
+        <Tabs value={value} onChange={handleChange}>
+          {question?.map((item, index) =>  <Tab label={String(index+1)} sx={{ width: '25%'}}  {...a11yProps(index)} />)}
         </Tabs>
       </Box>
-      {question?.map((item, index) => (      <CustomTabPanel value={value} index={index}>
-        <Typography>{item.sentence}</Typography>
+      {question?.map((item, index) => ( <CustomTabPanel value={value} index={index}>
+        <Typography gutterBottom variant='h2'>{item.sentence}</Typography>
         <Grid item container spacing={2} display='flex' >
           {item?.options?.map(item => (
             <Grid item xs={6} key={item.id}>
-              <Box sx={{ border: '1px solid rgba(231, 238, 243, 1)', display: 'flex', alignItems: 'center', padding: 2, m: 1 }}>
-                <Checkbox sx={{ borderRadius: '50%' }}/>
-                <Typography>{item.option}</Typography>
-              </Box>
+              <AnswerItem title={item.option}/>
             </Grid>
           ))}
         </Grid>
       </CustomTabPanel>))}
-      <Grid item xs display='flex' justifyContent='flex-end'>
+      <Grid item xs p={3} display='flex' justifyContent='flex-end'>
         <StyledButton onClick={()=> setValue((prevState)=> prevState +1)} variant='contained' endIcon={<ArrowForwardIosIcon/>}>Зберегти</StyledButton>
       </Grid>
     </Box>

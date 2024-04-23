@@ -1,9 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Box, Button, Checkbox, Grid, styled } from '@mui/material';
+import {Box, Button, Checkbox, Grid, styled} from '@mui/material';
 import Typography from '@mui/material/Typography';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useNavigate } from 'react-router-dom';
+import {API_URL, LOCALSTORAGE_AUTH_KEY} from "../common/constants";
+import {useAuthLocalStorage} from "../common/hooks/useAuthLocalStorage";
+import {PageLoader} from "../common/components/PageLoader";
+import {useHttpClient} from "../common/hooks/useHttpClient";
+import {AnswerItem} from "../common/components/UI/AnswerItem";
 
 const StyledButton = styled(Button)({
   padding: '10px 30px',
@@ -11,39 +16,46 @@ const StyledButton = styled(Button)({
 });
 
 export const SpecialSettings = ( ) => {
-  const navigate = useNavigate();
-  const [ isSelect, setIsSelect ] = useState(false);
+  const navigate = useNavigate()
+  const { setToStorage } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY)
+  const { loading, sendRequest } = useHttpClient();
+
+  const [ isSelectSettings, setIsSelectSettings ] = useState(false);
   const [ question, setQuestion ] = useState<{sentence?: string, options?: any[]}>({});
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://futuresimplehack-api.onrender.com/api/sentences/6626163c31d714ab051d2f3e');
+      const data = await sendRequest({
+        method: 'GET',
+        url: `${API_URL}/sentences/6626163c31d714ab051d2f3e`,
+      });
 
-      if (response.status){
-        setQuestion(response.data);
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
+      setQuestion(data);
+    } catch (error){
+      console.error(error)
     }
   };
 
-  useEffect(() => {
+  useEffect( () => {
     fetchData();
   }, []);
 
-  const handleSaveSpecial = () => {
-    setIsSelect(true);
+  const handleApproveSpecial = () => {
+    setIsSelectSettings(true);
   };
 
   const handleSave = () => {
-    localStorage.setItem('hackaton:auth', JSON.stringify({ isDiaAuth: true , isInstallSpecialSettings: true, isHasLevel: false }));
+    setToStorage({ isAuth: true , isInstallSpecialSettings: true, isHasLevel: false })
 
-    navigate('/check-level');
+    navigate('/check-level')
   };
 
+  if (loading){
+    return <PageLoader/>
+  }
 
   return (
-    isSelect ? (
+    isSelectSettings ? (
       <Grid container direction='column' spacing={3} p={20}>
         <Grid item display='flex' justifyContent='center'>
           <Typography variant='h2'>Тепер система адаптована під ваші потреби!</Typography>
@@ -68,15 +80,12 @@ export const SpecialSettings = ( ) => {
         <Grid item container spacing={2} display='flex' justifyContent='center'>
           {question?.options?.map(item => (
             <Grid item xs={6} key={item.id}>
-              <Box sx={{ border: '1px solid rgba(231, 238, 243, 1)', display: 'flex', alignItems: 'center', padding: 2, m: 1 }}>
-                <Checkbox sx={{ borderRadius: '50%' }}/>
-                <Typography>{item.option}</Typography>
-              </Box>
+              <AnswerItem title={item.option}/>
             </Grid>
           ))}
         </Grid>
         <Grid item xs display='flex' justifyContent='flex-end'>
-          <StyledButton onClick={handleSaveSpecial} variant='contained' endIcon={<ArrowForwardIosIcon/>}>Зберегти</StyledButton>
+          <StyledButton onClick={handleApproveSpecial} variant='contained' endIcon={<ArrowForwardIosIcon/>}>Зберегти</StyledButton>
         </Grid>
       </Grid>
     )
