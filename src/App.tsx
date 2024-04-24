@@ -3,26 +3,39 @@ import { AppConfigWrapper } from './common/components/AppConfigWrapper';
 import { Header } from './common/components/Header';
 import { Footer } from './common/components/Footer';
 import { AppRoutes } from './navigations/router';
+import { useAuthLocalStorage } from './common/hooks/useAuthLocalStorage';
+import { LOCALSTORAGE_AUTH_KEY } from './common/constants';
+import { Sidebar } from './common/components/Sidebar';
 import { useEffect, useState } from 'react';
 
 
 const App = () =>  {
-  const [ isAuth, setAuth ] = useState<{ isDiaAuth?: boolean }>({ isDiaAuth: false });
-  const token = localStorage.getItem('hackaton:auth');
+  const { authStore } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
+  const [ state, setState ] = useState<any>();
 
-  useEffect(()=> {
-    const parseToken= JSON.parse( token || '{}');
-
-    setAuth(parseToken);
-  },[ token ]);
+  useEffect(() => {
+    window.addEventListener('storage', () => {
+      console.log('Change to local storage!');
+      // @ts-ignore
+      const key = JSON.parse(localStorage.getItem(LOCALSTORAGE_AUTH_KEY));
+      if(key) {
+        setState(key.isHasLevel);
+      }
+    });
+  }, [ state ]);
 
 
   return (
     <AppConfigWrapper>
       <>
-        { isAuth.isDiaAuth && <Header/>}
-        <AppRoutes/>
-        { isAuth.isDiaAuth && <Footer/>}
+        { authStore.isAuth && <Header/>}
+        <div style={{ display: 'flex' }}>
+          { state && <Sidebar/>}
+          <div style={{ marginLeft: authStore.isAuth? '20px': 'none', width: '100%' }}>
+            <AppRoutes/>
+          </div>
+        </div>
+        { authStore.isAuth  && <Footer/>}
       </>
     </AppConfigWrapper>
   );

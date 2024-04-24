@@ -6,15 +6,16 @@ import {
   Popover,
   DialogTitle,
   Grid,
-  IconButton, styled
+  IconButton, styled, SvgIcon
 } from '@mui/material';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useContext, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import InvertColorsIcon from '@mui/icons-material/InvertColors';
 import RotateLeftIcon from '@mui/icons-material/RotateLeft';
 import { AppSettingsContext } from '../../context/AppSettingsContext';
 import CloseIcon from '@mui/icons-material/Close';
+
+import EyeIcon from '../../static/images/EyeIcon.png';
 
 const StyledButton = styled(Button)({
   color: 'rgba(0, 0, 0, 1)',
@@ -43,8 +44,10 @@ export const SettingsDialog = () => {
 
   const handleClickDialog = (event: any) => setAnchorEl(event.currentTarget);
 
+  const handleCloseDialog = (event: any) => setAnchorEl(null);
+
   return <>
-    <StyledButton onClick={handleClickDialog} startIcon={<VisibilityIcon />}>
+    <StyledButton onClick={handleClickDialog} startIcon={<img src={EyeIcon} alt='Eye icon'/>}>
       Людям з порушенням зору
     </StyledButton>
     <Popover
@@ -54,9 +57,9 @@ export const SettingsDialog = () => {
       anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
       transformOrigin={{ vertical: 'top', horizontal: 'left' }}
     >
-      <DialogTitle display='flex' justifyContent='space-between'>
+      <DialogTitle display='flex' justifyContent='space-between' gap={3}>
         <Typography variant='h2' sx={{ fontWeight: '300' }}>Зовнішній вигляд системи</Typography>
-        <IconButton onClick={handleClickDialog}><CloseIcon /></IconButton>
+        <IconButton onClick={handleCloseDialog}><CloseIcon /></IconButton>
       </DialogTitle>
       <DialogContent>
         <Grid container direction='column' spacing={2}>
