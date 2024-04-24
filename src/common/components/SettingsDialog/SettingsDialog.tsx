@@ -20,7 +20,8 @@ import EyeIcon from '../../static/images/EyeIcon.png';
 const StyledButton = styled(Button)({
   color: 'rgba(0, 0, 0, 1)',
   fontWeight: '200',
-  textTransform: 'none'
+  textTransform: 'none',
+  fontSize: '16px'
 });
 
 const StyledActionButton = styled(Button)({
