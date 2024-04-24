@@ -8,9 +8,7 @@ import { SettingsDialog } from '../SettingsDialog';
 
 
 export const Header = () => {
-  return <AppBar position='static'
-    // sx={{ padding: '10px 40px', zIndex:'10', boxShadow: 'none', background: 'linear-gradient(107.59deg, #DEEFD7 0%, #B6D8ED 50.24%, #D1E2EF 100%)' }}>
-    sx={{ padding: '10px 40px', zIndex:'10', boxShadow: 'none', background: 'linear-gradient(107.59deg, #D1E2EF 0%, #B6D8ED 50.24%, #DEEFD7 100%)' }}>
+  return <AppBar position='static' sx={{ padding: '10px 40px', zIndex:'10', boxShadow: 'none', background: 'linear-gradient(107.59deg, #D1E2EF 0%, #B6D8ED 50.24%, #DEEFD7 100%)' }}>
     <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
       <NavLink to={'/'}>
         <img src={FutureSimpleLogoMain} alt={'logo'} />
