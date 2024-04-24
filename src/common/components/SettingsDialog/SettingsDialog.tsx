@@ -6,7 +6,7 @@ import {
   Popover,
   DialogTitle,
   Grid,
-  IconButton, styled, SvgIcon
+  IconButton, styled
 } from '@mui/material';
 import { useContext, useState } from 'react';
 import Typography from '@mui/material/Typography';
@@ -34,7 +34,8 @@ const StyledResetButton = styled(Button)({
   color: 'rgba(0, 0, 0, 1)',
   border: '1px solid rgba(0, 0, 0, 1)',
   padding: '16px',
-  borderRadius: 40
+  borderRadius: 40,
+  fontSize: '16px'
 });
 
 export const SettingsDialog = () => {
@@ -51,6 +52,9 @@ export const SettingsDialog = () => {
       Людям з порушенням зору
     </StyledButton>
     <Popover
+      slotProps={{
+        paper: { style: { width: 550 } }
+      }}
       open={Boolean(anchorEl)}
       anchorEl={anchorEl}
       onClose={() => setAnchorEl(null)}
@@ -58,20 +62,20 @@ export const SettingsDialog = () => {
       transformOrigin={{ vertical: 'top', horizontal: 'left' }}
     >
       <DialogTitle display='flex' justifyContent='space-between' gap={3}>
-        <Typography variant='h2' sx={{ fontWeight: '300' }}>Зовнішній вигляд системи</Typography>
+        <Typography variant='h3' sx={{ fontWeight: '300' }}>Зовнішній вигляд системи</Typography>
         <IconButton onClick={handleCloseDialog}><CloseIcon /></IconButton>
       </DialogTitle>
       <DialogContent>
         <Grid container direction='column' spacing={2}>
           <Grid item>
-            <Typography gutterBottom variant='h4'>Розмір тексту</Typography>
+            <Typography gutterBottom variant='h5'>Розмір тексту</Typography>
             <Box display='flex' gap={1}>
               <StyledActionButton variant='outlined' onClick={() => toggleFontSize('down')}>-</StyledActionButton>
               <StyledActionButton variant='outlined' onClick={() => toggleFontSize('up')}>+</StyledActionButton>
             </Box>
           </Grid>
           <Grid item>
-            <Typography gutterBottom variant='h4'>Коліру</Typography>
+            <Typography gutterBottom variant='h5'>Колір</Typography>
             <Box display='flex' gap={1}>
               <StyledActionButton startIcon={<InvertColorsIcon/>} onClick={toggleColorMode} variant='outlined'>Ч/Б</StyledActionButton>
               <StyledActionButton startIcon={<InvertColorsIcon/>} onClick={toggleColorMode} variant='outlined'>Колір</StyledActionButton>

@@ -1,5 +1,5 @@
 export const createTypographyTheme = (value: number) => {
-  const scaledValue = value * 2;
+  const scaledValue = value;
 
 
   return {
