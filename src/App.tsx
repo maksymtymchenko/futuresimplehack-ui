@@ -7,17 +7,17 @@ import { useAuthLocalStorage } from './common/hooks/useAuthLocalStorage';
 import { LOCALSTORAGE_AUTH_KEY } from './common/constants';
 import { Sidebar } from './common/components/Sidebar';
 import { useEffect, useState } from 'react';
+import {Achievements} from "./common/components/Achievements";
 
 
 const App = () =>  {
   const { authStore } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
   const [ state, setState ] = useState<any>();
 
+  //TODO: fix
   useEffect(() => {
     window.addEventListener('storage', () => {
-      console.log('Change to local storage!');
-      // @ts-ignore
-      const key = JSON.parse(localStorage.getItem(LOCALSTORAGE_AUTH_KEY));
+      const key = JSON.parse(localStorage.getItem(LOCALSTORAGE_AUTH_KEY) || '{}');
       if(key) {
         setState(key.isHasLevel);
       }
@@ -31,8 +31,9 @@ const App = () =>  {
         { authStore.isAuth && <Header/>}
         <div style={{ display: 'flex' }}>
           { state && <Sidebar/>}
-          <div style={{ marginLeft: authStore.isAuth? '20px': 'none', width: '100%' }}>
+          <div style={{ marginLeft: authStore.isAuth? '20px': 'none', marginRight:state ? '350px' : 'none',  width: '100%', display: 'flex' }}>
             <AppRoutes/>
+            {state && <Achievements/>}
           </div>
         </div>
         { authStore.isAuth  && <Footer/>}
