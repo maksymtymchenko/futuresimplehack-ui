@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
-import axios from 'axios';
 import { Button, Checkbox, Grid, styled } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
