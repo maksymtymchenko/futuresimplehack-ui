@@ -6,18 +6,32 @@ import { AppRoutes } from './navigations/router';
 import { useAuthLocalStorage } from './common/hooks/useAuthLocalStorage';
 import { LOCALSTORAGE_AUTH_KEY } from './common/constants';
 import { Sidebar } from './common/components/Sidebar';
+import { useEffect, useState } from 'react';
 
 
 const App = () =>  {
   const { authStore } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
+  const [ state, setState ] = useState<any>();
+
+  useEffect(() => {
+    window.addEventListener('storage', () => {
+      console.log('Change to local storage!');
+      // @ts-ignore
+      const key = JSON.parse(localStorage.getItem(LOCALSTORAGE_AUTH_KEY));
+      if(key) {
+        setState(key.isHasLevel);
+      }
+    });
+  }, [ state ]);
+
 
   return (
     <AppConfigWrapper>
       <>
         { authStore.isAuth && <Header/>}
         <div style={{ display: 'flex' }}>
-          { authStore.isAuth && <Sidebar/>}
-          <div style={{ marginLeft: authStore.isAuth? '20px': 'none', width: '100%', padding: '20px' }}>
+          { state && <Sidebar/>}
+          <div style={{ marginLeft: authStore.isAuth? '20px': 'none', width: '100%' }}>
             <AppRoutes/>
           </div>
         </div>
