@@ -1,6 +1,7 @@
 import Typography from '@mui/material/Typography';
 import { Grid, Paper, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import {FC} from "react";
 
 const StyledPaper = styled(Paper)<{disabled?: boolean}>(({ disabled }) => ({
   padding: '20px',
@@ -9,25 +10,25 @@ const StyledPaper = styled(Paper)<{disabled?: boolean}>(({ disabled }) => ({
   color: disabled? 'rgba(196,196,196,0.65)': 'black'
 }));
 
-export const ProgramItem = ({ disabled } : { disabled: boolean}) => {
+interface IProgramItem {
+  disabled: boolean,
+  title: string,
+  lessons: {title: string}[],
+}
+
+export const ProgramItem: FC<IProgramItem> = ({ title, disabled, lessons }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/program/unit1');
+    if(!disabled) navigate('/program/unit1');
   };
 
   return <StyledPaper onClick={handleClick} disabled={disabled}>
-    <Typography gutterBottom variant='h4'>Unit 1: Identity</Typography>
+    <Typography gutterBottom variant='h4'>{title}</Typography>
     <Grid container direction='column' spacing={1} mt={2}>
-      <Grid item>
-        <Typography variant='body1'>Lesson 1: Me and my language</Typography>
-      </Grid>
-      <Grid item>
-        <Typography variant='body1'>Lesson 1: Me and my language</Typography>
-      </Grid>
-      <Grid item>
-        <Typography variant='body1'>Lesson 1: Me and my language</Typography>
-      </Grid>
+      {lessons.map(({title }) =>  <Grid item>
+        <Typography variant='body1'>{title}</Typography>
+      </Grid>)}
     </Grid>
   </StyledPaper>;
 };

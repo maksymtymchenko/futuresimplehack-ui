@@ -39,7 +39,7 @@ export const Sidebar = () => {
   }, []);
 
   return (
-    <List sx={{ width: '400px',height: '87vh',zIndex: 0, backgroundColor: 'rgba(231, 238, 243, 1)' }}>
+    <List sx={{ top: 30, position: 'fixed', width: '350px',height: '90vh',zIndex: 0, backgroundColor: 'rgba(231, 238, 243, 1)' }}>
       {sidebarItem.map(({ title, route, Icon }) => (
         <ListItem key={title} disablePadding>
           <ListItemButton component={ListItemComponent} to={route}>

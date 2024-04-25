@@ -31,7 +31,7 @@ const App = () =>  {
         { authStore.isAuth && <Header/>}
         <div style={{ display: 'flex' }}>
           { state && <Sidebar/>}
-          <div style={{ marginLeft: authStore.isAuth? '20px': 'none', marginRight:state ? '350px' : 'none',  width: '100%', display: 'flex' }}>
+          <div style={{ marginLeft: state? '400px': 'none', marginTop: '90px', marginBottom: '120px' , marginRight:state ? '350px' : '',  width: '100%', display: 'flex' }}>
             <AppRoutes/>
             {state && <Achievements/>}
           </div>

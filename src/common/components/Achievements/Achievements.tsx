@@ -52,7 +52,7 @@ export const Achievements =( ) => {
   const { averageMark,  finishedLessons, finishedProgram, lastMark, learntWords, spentHours} = achievements || {}
 
 
-  return <Grid container  direction='column' sx={{ maxWidth: '330px', padding: '10px 30px', position: 'absolute', right: 0}}>
+  return <Grid container  direction='column' sx={{ maxWidth: '330px', padding: '10px 30px', position: 'fixed', right: 0, bottom: 90}}>
     <Grid item xs={1} p={3} display='flex' justifyContent='center' alignItems='center'>
       <Typography variant='h5'>Твої досягення</Typography>
     </Grid>
