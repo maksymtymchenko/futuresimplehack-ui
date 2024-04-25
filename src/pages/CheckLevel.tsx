@@ -113,7 +113,7 @@ export const CheckLevel =() => {
                 ]
               }
             ]}
-            width={500}
+            width={550}
             height={300}
           />
         </Grid>

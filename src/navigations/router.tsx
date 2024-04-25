@@ -6,7 +6,7 @@ import { useAuthLocalStorage } from '../common/hooks/useAuthLocalStorage';
 import { LOCALSTORAGE_AUTH_KEY } from '../common/constants';
 import { Translator } from '../pages/Translator';
 import { Dictionary } from '../pages/Dictionary';
-import { CustomTable } from '../pages/CustomTable';
+import { IrregularVerbsTable } from '../pages/IrregularVerbsTable';
 import { Program } from '../pages/Program/Program';
 import { ProgramUnit } from '../pages/Program/ProgramUnit';
 import { ProgramLesson } from '../pages/Program/ProgramLesson';
@@ -25,7 +25,7 @@ export const AppRoutes = () => {
       <Route path='/grammar' element={<>Граматика</>} />
       <Route path='/translator' element={<Translator/>} />
       <Route path='/dictionary' element={<Dictionary/>} />
-      <Route path='/irregular-verbs' element={<CustomTable/>} />
+      <Route path='/irregular-verbs' element={<IrregularVerbsTable/>} />
 
       <Route path='*' element={<Navigate to='/special-settings' />} />
     </Routes>;

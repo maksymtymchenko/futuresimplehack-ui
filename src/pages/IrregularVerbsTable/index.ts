@@ -1,0 +1,1 @@
+export { IrregularVerbsTable } from './IrregularVerbsTable';
