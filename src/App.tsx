@@ -7,7 +7,7 @@ import { useAuthLocalStorage } from './common/hooks/useAuthLocalStorage';
 import { LOCALSTORAGE_AUTH_KEY } from './common/constants';
 import { Sidebar } from './common/components/Sidebar';
 import { useEffect, useState } from 'react';
-import {Achievements} from "./common/components/Achievements";
+import { Achievements } from './common/components/Achievements';
 
 
 const App = () =>  {

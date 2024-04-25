@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Auth } from '../pages/Auth';
 import { SpecialSettings } from '../pages/SpecialSettings';
 import { CheckLevel } from '../pages/CheckLevel';
@@ -10,6 +10,8 @@ import { IrregularVerbsTable } from '../pages/IrregularVerbsTable';
 import { Program } from '../pages/Program/Program';
 import { ProgramUnit } from '../pages/Program/ProgramUnit';
 import { ProgramLesson } from '../pages/Program/ProgramLesson';
+import { Grammar } from '../pages/Grammar/Grammar';
+import { GrammarModule } from '../pages/Grammar/components/GrammarModule';
 
 
 export const AppRoutes = () => {
@@ -22,7 +24,8 @@ export const AppRoutes = () => {
       <Route path='/program' element={<Program/>} />
       <Route path='/program/:unitId' element={<ProgramUnit/>} />
       <Route path='/program/:unitId/:lessonId' element={<ProgramLesson/>} />
-      <Route path='/grammar' element={<>Граматика</>} />
+      <Route path='/grammar' element={<Grammar/>} />
+      <Route path='/grammar/:moduleId' element={<GrammarModule/>} />
       <Route path='/translator' element={<Translator/>} />
       <Route path='/dictionary' element={<Dictionary/>} />
       <Route path='/irregular-verbs' element={<IrregularVerbsTable/>} />
