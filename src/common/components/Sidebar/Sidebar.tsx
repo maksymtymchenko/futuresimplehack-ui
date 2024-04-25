@@ -13,6 +13,8 @@ import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 import ContentPasteRoundedIcon from '@mui/icons-material/ContentPasteRounded';
 import { useAuthLocalStorage } from '../../hooks/useAuthLocalStorage';
 import { LOCALSTORAGE_AUTH_KEY } from '../../constants';
+import {Button} from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export const sidebarItem = [
   { title: 'Програма', route: '/program', Icon: InboxIcon },
@@ -25,8 +27,7 @@ export const sidebarItem = [
 
 export const Sidebar = () => {
   const { pathname } = useLocation();
-
-
+  const { logOut } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
 
   const ListItemComponent = useMemo(() => {
     return forwardRef<HTMLAnchorElement, { to: string }>(({ to, ...linkProps }, ref) => (
@@ -34,8 +35,8 @@ export const Sidebar = () => {
         to={to}
         style={{
           padding: '10px 10px 10px 40px',
-          backgroundColor: pathname == to ? 'rgba(0, 0, 0, 1)': 'transparent',
-          color:  pathname == to ? 'white': 'rgba(0, 0, 0, 1)'
+          backgroundColor: pathname.startsWith(to)? 'rgba(0, 0, 0, 1)': 'transparent',
+          color:   pathname.startsWith(to) ? 'white': 'rgba(0, 0, 0, 1)'
         }}
         ref={ref}
         {...linkProps}
@@ -49,15 +50,16 @@ export const Sidebar = () => {
         <ListItem key={title} disablePadding>
           <ListItemButton component={ListItemComponent} to={route}>
             <ListItemIcon>
-              <Icon  sx={{ color: pathname == route ? 'white': 'rgba(0, 0, 0, 1)'}}/>
+              <Icon  sx={{ color:  pathname.startsWith(route) ? 'white': 'rgba(0, 0, 0, 1)'}}/>
             </ListItemIcon>
             <ListItemText primary={title} />
             <ListItemIcon>
-              <KeyboardArrowRightIcon  sx={{ color: pathname == route ? 'white': 'rgba(0, 0, 0, 1)'}} />
+              <KeyboardArrowRightIcon  sx={{ color: pathname.startsWith(route)  ? 'white': 'rgba(0, 0, 0, 1)'}} />
             </ListItemIcon>
           </ListItemButton>
         </ListItem>
       ))}
+      <Button fullWidth onClick={logOut} sx={{ padding: 2, position: 'absolute', bottom: 165}} startIcon={<LogoutIcon />}>Вийти</Button>
     </List>
   );
 };

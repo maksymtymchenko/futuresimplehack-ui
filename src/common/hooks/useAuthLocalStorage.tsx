@@ -20,5 +20,10 @@ export const useAuthLocalStorage = (storageKey: string) => {
     window.dispatchEvent(new Event('storage'));
   };
 
-  return  { authStore , setToStorage };
+  const logOut =() => {
+    localStorage.setItem(storageKey,JSON.stringify(initialState));
+    window.dispatchEvent(new Event('storage'));
+  };
+
+  return  { authStore , setToStorage, logOut };
 };

@@ -27,6 +27,7 @@ export const Achievements =( ) => {
   useEffect(()=>{
     setTimeout(function() {
       setShowElement(false);
+
     }, 7000);
   },
   []);
@@ -59,7 +60,7 @@ export const Achievements =( ) => {
   const { averageMark,  finishedLessons, finishedProgram, lastMark, learntWords, spentHours } = achievements || {};
 
 
-  return <Grid container  direction='column' sx={{ maxWidth: '330px', padding: '10px 30px', position: 'fixed', right: 0, bottom: 90 }}>
+  return <Grid container  direction='column' sx={{ maxWidth: '330px', padding: '10px 30px', position: 'fixed', right: 0,top: 90, bottom: 90 }}>
     <Grid item xs={1} p={3} display='flex' justifyContent='center' alignItems='center'>
       <Typography variant='h5'>Твої досягення</Typography>
     </Grid>
@@ -103,14 +104,10 @@ export const Achievements =( ) => {
     </Grid>
 
     <Grid item container display='flex' justifyContent='center' alignItems='center'>
-      {/*{showElement &&    <Grid item mb={1}>*/}
-      {/*  <Paper sx={{ padding: '15px' }}>*/}
-      {/*    <Typography  gutterBottom variant='h5'>Хей, баді!</Typography>*/}
-      {/*    <Typography variant='body2'>Перший юніт вже чекає на тебе!</Typography>*/}
-      {/*  </Paper>*/}
-      {/*</Grid>}*/}
-
-      <Grid item mb={1} style={{ visibility: showElement ? 'visible' : 'hidden' }}>
+      <Grid item mb={1} style={{
+        opacity: showElement ? 1 : 0,
+        transition: 'opacity 1s ease',
+      }}>
         <Paper sx={{ padding: '15px' }}>
           <Typography  gutterBottom variant='h5'>Хей, баді!</Typography>
           <Typography variant='body2'>Перший юніт вже чекає на тебе!</Typography>
