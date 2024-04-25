@@ -11,7 +11,8 @@ import { Program } from '../pages/Program/Program';
 import { ProgramUnit } from '../pages/Program/ProgramUnit';
 import { ProgramLesson } from '../pages/Program/ProgramLesson';
 import { Grammar } from '../pages/Grammar/Grammar';
-import { GrammarModule } from '../pages/Grammar/components/GrammarModule';
+import { GrammarModule } from '../pages/Grammar/GrammarModule';
+import { GrammarLesson } from '../pages/Grammar/GrammarLesson';
 
 
 export const AppRoutes = () => {
@@ -26,6 +27,7 @@ export const AppRoutes = () => {
       <Route path='/program/:unitId/:lessonId' element={<ProgramLesson/>} />
       <Route path='/grammar' element={<Grammar/>} />
       <Route path='/grammar/:moduleId' element={<GrammarModule/>} />
+      <Route path='/grammar/:moduleId/:lessonId' element={<GrammarLesson/>} />
       <Route path='/translator' element={<Translator/>} />
       <Route path='/dictionary' element={<Dictionary/>} />
       <Route path='/irregular-verbs' element={<IrregularVerbsTable/>} />

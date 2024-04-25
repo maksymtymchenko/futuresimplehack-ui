@@ -35,3 +35,6 @@ export const secondUnitTopics = [
   'Nouns that can be countable or uncountable',
   'Ways of counting uncountable nouns'
 ];
+
+
+export const NOUNS = 'Nouns are the words we use for people, things and places: a tourist, a postcard, a museum ﻿﻿activities, ideas and feelings: shopping, information, love When nouns are names of people, places, dates, events, languages, religions and books, plays or films, they begin with a capital letter: Professor Grey, the British Museum, Glasgow, Africa, Monday, April, May Day, Spanish, Islam, \'The Lord of the Rings\', \'War and Peace\', \'Avatar\'';
