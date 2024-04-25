@@ -16,9 +16,7 @@ export const ProgramItem = ({ disabled } : { disabled: boolean}) => {
     navigate('/program/unit1');
   };
 
-
-
-  return     <StyledPaper onClick={handleClick} disabled={disabled}>
+  return <StyledPaper onClick={handleClick} disabled={disabled}>
     <Typography gutterBottom variant='h4'>Unit 1: Identity</Typography>
     <Grid container direction='column' spacing={1} mt={2}>
       <Grid item>
