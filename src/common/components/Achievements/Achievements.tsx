@@ -23,6 +23,14 @@ export const Achievements =( ) => {
   const[ achievements, setAchievements ] = useState<Record<string, number>>({});
   const { loading, sendRequest } = useHttpClient();
 
+  const [ showElement,setShowElement ] = useState(true);
+  useEffect(()=>{
+    setTimeout(function() {
+      setShowElement(false);
+    }, 7000);
+  },
+  []);
+
 
   const fetchData = async () => {
     try {
@@ -51,7 +59,7 @@ export const Achievements =( ) => {
   const { averageMark,  finishedLessons, finishedProgram, lastMark, learntWords, spentHours } = achievements || {};
 
 
-  return <Grid container  direction='column' sx={{ maxWidth: '330px', padding: '10px 30px', position: 'fixed', right: 0, top: 90, bottom: 90 }}>
+  return <Grid container  direction='column' sx={{ maxWidth: '330px', padding: '10px 30px', position: 'fixed', right: 0, bottom: 90 }}>
     <Grid item xs={1} p={3} display='flex' justifyContent='center' alignItems='center'>
       <Typography variant='h5'>Твої досягення</Typography>
     </Grid>
@@ -95,16 +103,22 @@ export const Achievements =( ) => {
     </Grid>
 
     <Grid item container display='flex' justifyContent='center' alignItems='center'>
-      <Grid item mb={1}>
+      {/*{showElement &&    <Grid item mb={1}>*/}
+      {/*  <Paper sx={{ padding: '15px' }}>*/}
+      {/*    <Typography  gutterBottom variant='h5'>Хей, баді!</Typography>*/}
+      {/*    <Typography variant='body2'>Перший юніт вже чекає на тебе!</Typography>*/}
+      {/*  </Paper>*/}
+      {/*</Grid>}*/}
+
+      <Grid item mb={1} style={{ visibility: showElement ? 'visible' : 'hidden' }}>
         <Paper sx={{ padding: '15px' }}>
           <Typography  gutterBottom variant='h5'>Хей, баді!</Typography>
           <Typography variant='body2'>Перший юніт вже чекає на тебе!</Typography>
         </Paper>
       </Grid>
       <Grid item>
-        <video style={{ width: 120, height: 190, padding: 0, transform: 'scale(1.2)' }} loop autoPlay src={video}></video>
+        <video style={{ width: 120, height: 190, padding: 0, transform: 'scale(1.2)' }} loop={showElement} autoPlay={showElement} src={video}></video>
       </Grid>
     </Grid>
-
   </Grid>;
 };
