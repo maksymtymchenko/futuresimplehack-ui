@@ -16,6 +16,7 @@ import { READING, terminology, questions, grammarRows1, SPANISH_CLASS_EMAIL, NEW
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import {Breadcrumb} from "../../common/components/Breadcrumb";
 
 const StyledAccordion = styled(Accordion)({
   backgroundColor: 'rgba(231, 238, 243, 0.5)',
@@ -30,10 +31,20 @@ const StyledListItemText = styled(ListItemText)({
   alignItems: 'center'
 });
 
+const breadcrumbItems = [
+  { href: '/program', label: 'Програма' },
+  { href: '/program/unit1', label: 'Unit 1' },
+  { href: '/program/unit1/lesson1', label: 'Lesson 1' },
+];
+
 export const ProgramLesson = () => {
+  const handleBack = () => window.history.back();
+
+
   return <Grid container direction='column'>
-    <Grid item display='flex' gap={2} mb={3} mt={3}>
-      <IconButton ><ArrowBackIosNewRoundedIcon /></IconButton>
+    <Breadcrumb items={breadcrumbItems}/>
+    <Grid item display='flex' gap={2} mb={3} mt={1}>
+      <IconButton onClick={handleBack}><ArrowBackIosNewRoundedIcon /></IconButton>
       <Typography variant='h2'>Lesson 1: Me and my language</Typography>
     </Grid>
 

@@ -11,7 +11,7 @@ const StyledPaper = styled(Paper)({
 export const Program = () => {
   return <Grid container direction='column' spacing={3}>
     <Grid item display='flex' gap={2} mb={3}  mt={3}>
-      <Typography variant='h2'> Програма: B1 Level</Typography>
+      <Typography variant='h2'>Програма: B1 Level</Typography>
     </Grid>
 
     {lessons.map(({ title, lessons, disabled})=> (

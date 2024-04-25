@@ -52,7 +52,7 @@ export const Translator = () => {
 
 
   return <Grid container>
-    <Grid item mt={3} xs={12} mb={4}>
+    <Grid item mt={3} xs={12} mb={3}>
       <Typography variant='h2'>Перекладач</Typography>
     </Grid>
 
