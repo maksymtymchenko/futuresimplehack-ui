@@ -16,3 +16,7 @@ export  const irregularVerbsData = [
   { infinitive: 'take', pastSimple: 'took', pastParticiple: 'taken' },
   { infinitive: 'write', pastSimple: 'wrote', pastParticiple: 'written' },
 ];
+
+export const rowsPerPage = 8;
+
+export const tenses = ['INFINITIVE', 'PAST SIMPLE', 'PAST PARTICIPLE'];
