@@ -4,7 +4,8 @@ import Typography from '@mui/material/Typography';
 import video  from '../../static/videos/1.mp4';
 import { useHttpClient } from '../../hooks/useHttpClient';
 import { API_URL } from '../../constants';
-import { useEffect, useState } from 'react';
+import {useEffect, useMemo, useRef, useState} from 'react';
+import {phrases} from "./constants";
 
 const StyledCountGrid = styled(Grid)({
   border: '1px solid rgba(231, 238, 243, 1)',
@@ -23,14 +24,25 @@ export const Achievements =( ) => {
   const[ achievements, setAchievements ] = useState<Record<string, number>>({});
   const { loading, sendRequest } = useHttpClient();
 
-  const [ showElement,setShowElement ] = useState(true);
-  useEffect(()=>{
-    setTimeout(function() {
-      setShowElement(false);
+  const isFirstRender = useRef(true)
 
+  console.log(isFirstRender)
+
+  const [ showHelpElement,setShowHelpElement ] = useState(true);
+
+  useEffect(()=>{
+    const timeout = setTimeout(function() {
+      setShowHelpElement(prevState => !prevState);
+      isFirstRender.current = false
+      clearTimeout(timeout)
     }, 7000);
   },
-  []);
+  [showHelpElement]);
+
+  const getRandomPhrase = useMemo(() => {
+    const index = Math.floor(Math.random() * phrases.length);
+    return phrases[index];
+  }, [showHelpElement]);
 
 
   const fetchData = async () => {
@@ -49,6 +61,7 @@ export const Achievements =( ) => {
   useEffect( () => {
     fetchData();
   }, []);
+
 
   if (loading){
     return   <Box display='flex' justifyContent='center' alignItems='center' sx={{ width: '330px', padding: '10px 30px' }}>
@@ -105,16 +118,19 @@ export const Achievements =( ) => {
 
     <Grid item container display='flex' justifyContent='center' alignItems='center'>
       <Grid item mb={1} style={{
-        opacity: showElement ? 1 : 0,
+        opacity: showHelpElement ? 1 : 0,
         transition: 'opacity 1s ease',
       }}>
         <Paper sx={{ padding: '15px' }}>
-          <Typography  gutterBottom variant='h5'>Хей, баді!</Typography>
-          <Typography variant='body2'>Перший юніт вже чекає на тебе!</Typography>
+          <Typography gutterBottom variant='body2'>{getRandomPhrase}</Typography>
+          {/*{isFirstRender.current ? <>*/}
+          {/*  <Typography gutterBottom variant='body2'>Хей, баді! Перший юніт вже чекає на тебе!</Typography>*/}
+          {/*</> : <><Typography gutterBottom variant='h5'>Агов, друже! Не втрачай мотівейшн!</Typography>*/}
+          {/*</>}*/}
         </Paper>
       </Grid>
       <Grid item>
-        <video style={{ width: 120, height: 190, padding: 0, transform: 'scale(1.2)' }} loop={showElement} autoPlay={showElement} src={video}></video>
+        <video style={{ width: 120, height: 190, padding: 0, transform: 'scale(1.2)' }} loop={showHelpElement} autoPlay={showHelpElement} src={video}></video>
       </Grid>
     </Grid>
   </Grid>;

@@ -76,10 +76,12 @@ export const CheckLevel =() => {
   }, []);
 
   useEffect(() => {
-    if (value === 3){
-      setIsHasResult(true);
+    if(question.length){
+      if (value === question.length){
+        setIsHasResult(true);
+      }
     }
-  }, [ value ]);
+  }, [ value, loading ]);
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
