@@ -8,8 +8,8 @@ import React from 'react';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { SettingsDialog } from '../common/components/SettingsDialog';
-import { LOCALSTORAGE_AUTH_KEY } from '../common/constants';
-import { useAuthLocalStorage } from '../common/hooks/useAuthLocalStorage';
+import { useNavigate } from 'react-router-dom';
+import {useAuth} from "../common/components/AuthProvider/AuthProvider";
 
 
 const StyledLink = styled(Link)({
@@ -23,13 +23,17 @@ const StyledButton = styled(Button)({
 });
 
 export const Auth = () => {
-  const { setToStorage } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
+  const { setToStorage } = useAuth();
+
+  const navigate = useNavigate();
+
+  // const goBack = () => navigate('/special-settings');
 
   const handleAuth = () => {
     setToStorage({ isAuth: true, isInstallSpecialSettings: false, isHasLevel: false });
-
-    // mock auth reloading
-    window.location.reload();
+    // goBack();
+    // // mock auth reloading
+    // window.location.reload();
   };
 
 

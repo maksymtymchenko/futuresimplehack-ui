@@ -16,9 +16,14 @@ import { READING, terminology, questions, grammarRows1, SPANISH_CLASS_EMAIL, NEW
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import { Breadcrumb } from '../../common/components/Breadcrumb';
 
 const StyledAccordion = styled(Accordion)({
-  backgroundColor: 'rgba(231, 238, 243, 0.5)'
+  backgroundColor: 'rgba(231, 238, 243, 0.5)',
+  margin: '20px 0px',
+  boxShadow: 'none',
+  borderRadius: '8pxs',
+  padding: '16px'
 });
 
 const StyledListItemText = styled(ListItemText)({
@@ -26,10 +31,20 @@ const StyledListItemText = styled(ListItemText)({
   alignItems: 'center'
 });
 
+const breadcrumbItems = [
+  { href: '/program', label: 'Програма' },
+  { href: '/program/unit1', label: 'Unit 1' },
+  { href: '/program/unit1/lesson1', label: 'Lesson 1' }
+];
+
 export const ProgramLesson = () => {
-  return <Grid container direction='column' spacing={3}>
-    <Grid item display='flex' gap={2} mb={4}>
-      <IconButton ><ArrowBackIosNewRoundedIcon /></IconButton>
+  const handleBack = () => window.history.back();
+
+
+  return <Grid container direction='column'>
+    <Breadcrumb items={breadcrumbItems}/>
+    <Grid item display='flex' gap={2} mb={3} mt={1}>
+      <IconButton onClick={handleBack}><ArrowBackIosNewRoundedIcon /></IconButton>
       <Typography variant='h2'>Lesson 1: Me and my language</Typography>
     </Grid>
 
@@ -53,8 +68,8 @@ export const ProgramLesson = () => {
             {terminology.map(({ term, definition }, index) => (
               <ListItem key={index}>
                 <StyledListItemText
-                  primary={<Typography variant='subtitle2' fontWeight='bold'> * {term} -</Typography>}
-                  secondary={<Typography variant='body2' > {definition}</Typography>}
+                  primary={<Typography sx={{ mr: '5px' }} variant='subtitle2' fontWeight='bold'>{term} -</Typography>}
+                  secondary={<Typography variant='body2' >{definition}</Typography>}
                 />
               </ListItem>
             ))}
@@ -80,7 +95,7 @@ export const ProgramLesson = () => {
           <Grid container>
             <Grid item container mt={1} mb={3} direction='column'>
               <Grid item>
-                <Typography gutterBottom variant='h5'> Object questions </Typography>
+                <Typography gutterBottom mb={2} variant='h5'> Object questions </Typography>
               </Grid>
               <Grid item>
                 <Typography gutterBottom variant='body1'>Object questions use the word order: question word + auxiliary verb + subject + infinitive</Typography>

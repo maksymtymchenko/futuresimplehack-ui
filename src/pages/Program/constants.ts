@@ -60,3 +60,75 @@ I look forward to working with you.
 Yours sincerely,
 Talya Osman
 `;
+
+interface Unit {
+  title: string;
+  disabled: boolean;
+  lessons: {
+    title: string;
+  }[];
+}
+
+export const lessons: Unit[] = [
+  {
+    title: 'Unit 1: Identity',
+    disabled: false,
+    lessons: [
+      { title: 'Lesson 1: Me and my language' },
+      { title: 'Lesson 2: Same or different' },
+      { title: 'Lesson 3: Tell me about yourself' }
+    ]
+  },
+  {
+    title: 'Unit 2: Tales',
+    disabled: true,
+    lessons: [
+      { title: 'Lesson 4: Fact or fiction' },
+      { title: 'Lesson 5: What really happened?' },
+      { title: 'Lesson 6: I don’t believe it!' }
+    ]
+  },
+  {
+    title: 'Unit 3: Future',
+    disabled: true,
+    lessons: [
+      { title: 'Lesson 7: Making plans' },
+      { title: 'Lesson 8: Tomorrow’s world' },
+      { title: 'Lesson 9: In other words...' }
+    ]
+  }
+];
+
+interface Lesson {
+  title: string;
+  disabled: boolean;
+  lessons: {
+    title: string;
+  }[];
+}
+
+export const unitsLessons: { title: string, units: Lesson[]} = {
+  title: 'Unit 1: Introduction to B1 Level',
+  units: [
+    {
+      title: 'Lesson 1: Me and my language',
+      disabled: false,
+      lessons: [
+        { title: 'Reading: Bilinguals exotic birds or everyday people?' },
+        { title: 'Vocabulary' },
+        { title: 'Grammar: Question forms' },
+        { title: 'Writing: Emails of introduction' }
+      ]
+    },
+    {
+      title: 'Lesson 1: Me and my language',
+      disabled: true,
+      lessons: [
+        { title: 'Reading: Bilinguals exotic birds or everyday people?' },
+        { title: 'Vocabulary' },
+        { title: 'Grammar: Question forms' },
+        { title: 'Writing: Emails of introduction' }
+      ]
+    }
+  ]
+};

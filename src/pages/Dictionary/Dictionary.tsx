@@ -86,17 +86,17 @@ export const Dictionary = () => {
 
       <Grid item container spacing={2}>
         <Grid item xs={6}>
-          <TableContainer component={Paper} sx={{ border: '1px solid rgba(231, 238, 243, 1)', p: 2}}>
+          <TableContainer component={Paper} sx={{ border: '1px solid rgba(231, 238, 243, 1)', p: 2 }}>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ border: 'none'}}>Слово або вираз</TableCell>
+                  <TableCell sx={{ border: 'none' }}>Слово або вираз</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {filteredData.map((row) => (
                   <TableRow key={row.originalWord}>
-                    <TableCell sx={{ border: 'none'}}>{row.originalWord}</TableCell>
+                    <TableCell sx={{ border: 'none' }}>{row.originalWord}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -105,17 +105,17 @@ export const Dictionary = () => {
         </Grid>
 
         <Grid item xs={6}>
-          <TableContainer component={Paper} sx={{ border: '1px solid rgba(231, 238, 243, 1)', p: 2}}>
+          <TableContainer component={Paper} sx={{ border: '1px solid rgba(231, 238, 243, 1)', p: 2 }}>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ border: 'none'}}>Переклад</TableCell>
+                  <TableCell sx={{ border: 'none' }}>Переклад</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {filteredData.map((row) => (
                   <TableRow key={row.translatedWord}>
-                    <TableCell sx={{ border: 'none'}}>{row.translatedWord}</TableCell>
+                    <TableCell sx={{ border: 'none' }}>{row.translatedWord}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

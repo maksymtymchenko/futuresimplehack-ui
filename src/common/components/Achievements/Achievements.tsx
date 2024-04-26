@@ -1,11 +1,11 @@
-import {Box, CircularProgress, Grid, Paper, styled} from "@mui/material";
-import Typography from "@mui/material/Typography";
+import { Box, CircularProgress, Grid, Paper, styled } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
-import storkLogo  from '../..//static/images/goose-menu-img 1.svg'
-import {useHttpClient} from "../../hooks/useHttpClient";
-import {API_URL} from "../../constants";
-import {useEffect, useState} from "react";
-import {PageLoader} from "../PageLoader";
+import video  from '../../static/videos/1.mp4';
+import { useHttpClient } from '../../hooks/useHttpClient';
+import { API_URL } from '../../constants';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { phrases } from './constants';
 
 const StyledCountGrid = styled(Grid)({
   border: '1px solid rgba(231, 238, 243, 1)',
@@ -14,15 +14,31 @@ const StyledCountGrid = styled(Grid)({
   textAlign: 'center',
   width: '110px',
   height: '110px'
-})
+});
 
 const StyledCount = styled(Grid)({
   backgroundColor: 'rgba(4, 198, 93, 0.2)', display: 'flex', justifyContent: 'space-between', padding: '8px', borderRadius: '8px'
-})
+});
 
 export const Achievements =( ) => {
-  const[achievements, setAchievements] = useState<Record<string, number>>({})
+  const[ achievements, setAchievements ] = useState<Record<string, number>>({});
   const { loading, sendRequest } = useHttpClient();
+
+  const [ showHelpElement,setShowHelpElement ] = useState(true);
+
+  useEffect(()=>{
+    const timeout = setTimeout(function() {
+      setShowHelpElement(prevState => !prevState);
+      clearTimeout(timeout);
+      return () => clearTimeout(timeout);
+    }, 7000);
+  },
+  [ showHelpElement ]);
+
+  const getRandomPhrase = useMemo(() => {
+    const index = Math.floor(Math.random() * phrases.length);
+    return phrases[index];
+  }, [ showHelpElement ]);
 
 
   const fetchData = async () => {
@@ -42,17 +58,18 @@ export const Achievements =( ) => {
     fetchData();
   }, []);
 
+
   if (loading){
-    return   <Box display='flex' justifyContent='center' alignItems='center' sx={{ width: '330px', padding: '10px 30px'}}>
+    return   <Box display='flex' justifyContent='center' alignItems='center' sx={{ width: '330px', padding: '10px 30px' }}>
       <CircularProgress size={100}  />
-    </Box>
+    </Box>;
   }
 
 
-  const { averageMark,  finishedLessons, finishedProgram, lastMark, learntWords, spentHours} = achievements || {}
+  const { averageMark,  finishedLessons, finishedProgram, lastMark, learntWords, spentHours } = achievements || {};
 
 
-  return <Grid container  direction='column' sx={{ maxWidth: '330px', padding: '10px 30px', position: 'absolute', right: 0}}>
+  return <Grid container flexWrap='nowrap'  direction='column' sx={{ maxWidth: '330px', padding: '10px 30px', position: 'fixed', top: 90, right: 0, bottom: 90 }}>
     <Grid item xs={1} p={3} display='flex' justifyContent='center' alignItems='center'>
       <Typography variant='h5'>Твої досягення</Typography>
     </Grid>
@@ -79,7 +96,7 @@ export const Achievements =( ) => {
       <Grid item xs={6} container justifyContent='center'>
         <StyledCountGrid item>
           <Typography variant='h2'>{spentHours}</Typography>
-          <Typography variant='body2'>хвивилин на платформі</Typography>
+          <Typography variant='body2'>хвилин на платформі</Typography>
         </StyledCountGrid>
       </Grid>
     </Grid>
@@ -96,16 +113,17 @@ export const Achievements =( ) => {
     </Grid>
 
     <Grid item container display='flex' justifyContent='center' alignItems='center'>
-      <Grid item mb={1}>
-        <Paper sx={{ padding: '15px'}}>
-          <Typography  gutterBottom variant='h5'>Хей, баді!</Typography>
-          <Typography variant='body2'>Перший юніт вже чекає на тебе!</Typography>
+      <Grid item mb={1} style={{
+        opacity: showHelpElement ? 1 : 0,
+        transition: 'opacity 1s ease'
+      }}>
+        <Paper sx={{ padding: '15px' }}>
+          <Typography gutterBottom variant='body2'>{getRandomPhrase}</Typography>
         </Paper>
       </Grid>
       <Grid item>
-        <img src={storkLogo}/>
+        <video style={{ width: 120, height: 190, padding: 0, transform: 'scale(1.2)' }} loop autoPlay src={video}></video>
       </Grid>
     </Grid>
-
-  </Grid>
-}
+  </Grid>;
+};

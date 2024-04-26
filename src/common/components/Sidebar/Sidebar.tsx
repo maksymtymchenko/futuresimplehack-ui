@@ -1,5 +1,5 @@
 import React, { useMemo, forwardRef, Ref } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useMatch, useNavigate, useNavigation } from 'react-router-dom';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -11,8 +11,9 @@ import ModeIcon from '@mui/icons-material/Mode';
 import TranslateIcon from '@mui/icons-material/Translate';
 import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 import ContentPasteRoundedIcon from '@mui/icons-material/ContentPasteRounded';
-import { useAuthLocalStorage } from '../../hooks/useAuthLocalStorage';
-import { LOCALSTORAGE_AUTH_KEY } from '../../constants';
+import { Button } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
+import {useAuth} from "../AuthProvider/AuthProvider";
 
 export const sidebarItem = [
   { title: 'Програма', route: '/program', Icon: InboxIcon },
@@ -24,35 +25,40 @@ export const sidebarItem = [
 
 
 export const Sidebar = () => {
-  const { authStore } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
-
+  const { pathname } = useLocation();
+  const { logOut } = useAuth();
 
   const ListItemComponent = useMemo(() => {
     return forwardRef<HTMLAnchorElement, { to: string }>(({ to, ...linkProps }, ref) => (
       <NavLink
         to={to}
+        style={{
+          padding: '10px 10px 10px 40px',
+          backgroundColor: pathname.startsWith(to)? 'rgba(0, 0, 0, 1)': 'transparent',
+          color:   pathname.startsWith(to) ? 'white': 'rgba(0, 0, 0, 1)'
+        }}
         ref={ref}
         {...linkProps}
-        style={{ padding: '10px 10px 10px 40px' }}
       />
     ));
-  }, []);
+  }, [ pathname ]);
 
   return (
-    <List sx={{ width: '400px',height: '87vh',zIndex: 0, backgroundColor: 'rgba(231, 238, 243, 1)' }}>
+    <List sx={{ top: 76, position: 'fixed', width: '350px',height: '100vh',zIndex: 0, backgroundColor: 'rgba(231, 238, 243, 1)' }}>
       {sidebarItem.map(({ title, route, Icon }) => (
         <ListItem key={title} disablePadding>
           <ListItemButton component={ListItemComponent} to={route}>
             <ListItemIcon>
-              <Icon  />
+              <Icon  sx={{ color:  pathname.startsWith(route) ? 'white': 'rgba(0, 0, 0, 1)' }}/>
             </ListItemIcon>
             <ListItemText primary={title} />
             <ListItemIcon>
-              <KeyboardArrowRightIcon  />
+              <KeyboardArrowRightIcon  sx={{ color: pathname.startsWith(route)  ? 'white': 'rgba(0, 0, 0, 1)' }} />
             </ListItemIcon>
           </ListItemButton>
         </ListItem>
       ))}
+      <Button fullWidth onClick={logOut} sx={{ padding: 2, position: 'absolute', bottom: 165 }} startIcon={<LogoutIcon />}>Вийти</Button>
     </List>
   );
 };
