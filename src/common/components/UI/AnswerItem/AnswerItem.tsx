@@ -2,13 +2,8 @@ import { useState } from 'react';
 import { Box, Checkbox } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-// border: 2px solid;
-//
-// border-image-source: linear-gradient(90deg, #D7F64D 0%, #007EFF 100%);
 
-
-
-export const AnswerItem = ({ title }: { title: string}) => {
+export const AnswerItem = ({ title, isCorrect }: { title: string, isCorrect?: boolean}) => {
   const [ checked, setChecked ] = useState(false);
 
   const handleClick = () => {

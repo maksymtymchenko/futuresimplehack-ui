@@ -14,15 +14,27 @@ import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRound
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import {  terminology, questions, grammarRows1, SPANISH_CLASS_EMAIL, NEW_DIRECTOR_EMAIL } from '../Program/constants';
 import { NOUNS } from './constants';
+import { Breadcrumb } from '../../common/components/Breadcrumb';
 
 const StyledAccordion = styled(Accordion)({
-  backgroundColor: 'rgba(231, 238, 243, 0.5)'
+  backgroundColor: 'rgba(231, 238, 243, 0.5)',
+  margin: '20px 0px',
+  boxShadow: 'none',
+  borderRadius: '8pxs',
+  padding: '16px'
 });
 
 const StyledListItemText = styled(ListItemText)({
   display: 'flex',
   alignItems: 'center'
 });
+const breadcrumbItems = [
+  { href: '/grammar', label: 'Гарматика' },
+  { href: '/grammar/module1', label: 'Module 1' },
+  { href: '/grammar/module1/unit1', label: 'Unit 1' }
+];
+
+
 
 export const GrammarLesson = () => {
   const navigate = useNavigate();
@@ -30,9 +42,10 @@ export const GrammarLesson = () => {
   const goBack = () => navigate('/grammar/module-1');
 
   return <Grid container direction='column' spacing={3}>
-    <Grid item display='flex' gap={2} mb={4}>
+    <Breadcrumb items={breadcrumbItems}/>
+    <Grid item display='flex' gap={2} mb={3} mt={1}>
       <IconButton onClick={goBack}><ArrowBackIosNewRoundedIcon /></IconButton>
-      <Typography variant='h2'>Unit 1: Nouns</Typography>
+      <Typography variant='h2'>Lesson 1: Me and my language</Typography>
     </Grid>
 
     <Grid item>

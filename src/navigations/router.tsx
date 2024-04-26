@@ -11,20 +11,20 @@ import { ProgramLesson } from '../pages/Program/ProgramLesson';
 import { Grammar } from '../pages/Grammar/Grammar';
 import { GrammarModule } from '../pages/Grammar/GrammarModule';
 import { GrammarLesson } from '../pages/Grammar/GrammarLesson';
-import {AuthStoreType, useAuth} from "../common/components/AuthProvider/AuthProvider";
+import { AuthStoreType, useAuth } from '../common/components/AuthProvider/AuthProvider';
 
 const redirectPath = (authStore: AuthStoreType) => {
-  if(!authStore.isInstallSpecialSettings) return '/special-settings'
+  if(!authStore.isInstallSpecialSettings) return '/special-settings';
 
-  if(!authStore.isHasLevel) return '/check-level'
+  if(!authStore.isHasLevel) return '/check-level';
 
-  return '/program'
-}
+  return '/program';
+};
 
 
 export const AppRoutes = () => {
   const { authStore } = useAuth();
-  const redirect = redirectPath(authStore)
+  const redirect = redirectPath(authStore);
 
   if (authStore.isAuth){
     return (

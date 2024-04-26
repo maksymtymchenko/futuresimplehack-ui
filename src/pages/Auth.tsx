@@ -9,7 +9,7 @@ import React from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { SettingsDialog } from '../common/components/SettingsDialog';
 import { useNavigate } from 'react-router-dom';
-import {useAuth} from "../common/components/AuthProvider/AuthProvider";
+import { useAuth } from '../common/components/AuthProvider/AuthProvider';
 
 
 const StyledLink = styled(Link)({

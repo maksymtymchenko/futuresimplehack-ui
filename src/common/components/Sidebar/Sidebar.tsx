@@ -13,7 +13,7 @@ import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 import ContentPasteRoundedIcon from '@mui/icons-material/ContentPasteRounded';
 import { Button } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {useAuth} from "../AuthProvider/AuthProvider";
+import { useAuth } from '../AuthProvider/AuthProvider';
 
 export const sidebarItem = [
   { title: 'Програма', route: '/program', Icon: InboxIcon },

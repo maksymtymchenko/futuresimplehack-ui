@@ -1,5 +1,5 @@
-import React, {createContext, FC, ReactElement, useContext, useEffect, useState} from 'react';
-import {LOCALSTORAGE_AUTH_KEY} from "../../constants";
+import React, { createContext, FC, ReactElement, useContext, useEffect, useState } from 'react';
+import { LOCALSTORAGE_AUTH_KEY } from '../../constants';
 
 export type AuthStoreType = { isAuth: boolean, isInstallSpecialSettings: boolean, isHasLevel: boolean };
 const initialState: AuthStoreType = { isAuth: false, isInstallSpecialSettings: false, isHasLevel: false };
@@ -11,8 +11,8 @@ const AuthContext = createContext<{ authStore: AuthStoreType, setToStorage: (val
 });
 
 export const AuthProvider: FC<{ children: ReactElement}> = ({ children }) => {
-  const storeData = JSON.parse(localStorage.getItem(LOCALSTORAGE_AUTH_KEY) || '{}')
-  const [authStore, setAuthStore] = useState(storeData?.isAuth ? storeData : initialState);
+  const storeData = JSON.parse(localStorage.getItem(LOCALSTORAGE_AUTH_KEY) || '{}');
+  const [ authStore, setAuthStore ] = useState(storeData?.isAuth ? storeData : initialState);
 
   useEffect(() => {
     const storage= localStorage.getItem(LOCALSTORAGE_AUTH_KEY);
@@ -31,7 +31,7 @@ export const AuthProvider: FC<{ children: ReactElement}> = ({ children }) => {
     setAuthStore(initialState);
     localStorage.removeItem(LOCALSTORAGE_AUTH_KEY);
 
-    window.location.reload()
+    window.location.reload();
   };
 
   return (

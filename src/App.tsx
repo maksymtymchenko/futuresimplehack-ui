@@ -7,26 +7,26 @@ import { LOCALSTORAGE_AUTH_KEY } from './common/constants';
 import { Sidebar } from './common/components/Sidebar';
 import { useEffect, useState } from 'react';
 import { Achievements } from './common/components/Achievements';
-import {AuthProvider, useAuth} from "./common/components/AuthProvider/AuthProvider";
+import { AuthProvider, useAuth } from './common/components/AuthProvider/AuthProvider';
 
 
 const App = () =>  {
   const { authStore } = useAuth();
 
   return (
-      <AppConfigWrapper>
+    <AppConfigWrapper>
       <>
-          { authStore.isAuth && <Header/>}
+        { authStore.isAuth && <Header/>}
         <div style={{ display: 'flex' }}>
-            { authStore.isHasLevel && <Sidebar/>}
+          { authStore.isHasLevel && <Sidebar/>}
           <div style={{ marginLeft: authStore.isHasLevel? '400px': 'none', marginTop: authStore.isAuth ? '100px' : 'none', marginBottom: authStore.isAuth ? '100px' : 'none' , marginRight:authStore.isHasLevel ? '350px' : '',  width: '100%', display: 'flex' }}>
-              <AppRoutes/>
-              {authStore.isHasLevel && <Achievements/>}
-            </div>
+            <AppRoutes/>
+            {authStore.isHasLevel && <Achievements/>}
           </div>
-          { authStore.isAuth  && <Footer/>}
-        </>
-      </AppConfigWrapper>
+        </div>
+        { authStore.isAuth  && <Footer/>}
+      </>
+    </AppConfigWrapper>
   );
 };
 

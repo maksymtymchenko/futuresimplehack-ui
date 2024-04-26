@@ -8,7 +8,7 @@ import { API_URL, LOCALSTORAGE_AUTH_KEY } from '../common/constants';
 import { PageLoader } from '../common/components/PageLoader';
 import { useHttpClient } from '../common/hooks/useHttpClient';
 import { AnswerItem } from '../common/components/UI/AnswerItem';
-import {useAuth} from "../common/components/AuthProvider/AuthProvider";
+import { useAuth } from '../common/components/AuthProvider/AuthProvider';
 
 const StyledButton = styled(Button)({
   padding: '10px 30px',
