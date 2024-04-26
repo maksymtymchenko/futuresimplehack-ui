@@ -5,10 +5,10 @@ import Typography from '@mui/material/Typography';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useNavigate } from 'react-router-dom';
 import { API_URL, LOCALSTORAGE_AUTH_KEY } from '../common/constants';
-import { useAuthLocalStorage } from '../common/hooks/useAuthLocalStorage';
 import { PageLoader } from '../common/components/PageLoader';
 import { useHttpClient } from '../common/hooks/useHttpClient';
 import { AnswerItem } from '../common/components/UI/AnswerItem';
+import {useAuth} from "../common/components/AuthProvider/AuthProvider";
 
 const StyledButton = styled(Button)({
   padding: '10px 30px',
@@ -17,7 +17,7 @@ const StyledButton = styled(Button)({
 
 export const SpecialSettings = ( ) => {
   const navigate = useNavigate();
-  const { setToStorage } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
+  const { setToStorage } = useAuth();
   const { loading, sendRequest } = useHttpClient();
 
   const [ isSelectSettings, setIsSelectSettings ] = useState(false);

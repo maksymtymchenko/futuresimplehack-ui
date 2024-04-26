@@ -9,10 +9,10 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import { useNavigate } from 'react-router-dom';
 import { useHttpClient } from '../common/hooks/useHttpClient';
-import { API_URL, LOCALSTORAGE_AUTH_KEY } from '../common/constants';
-import { useAuthLocalStorage } from '../common/hooks/useAuthLocalStorage';
+import { API_URL } from '../common/constants';
 import { AnswerItem } from '../common/components/UI/AnswerItem';
 import { PageLoader } from '../common/components/PageLoader';
+import {useAuth} from "../common/components/AuthProvider/AuthProvider";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -58,7 +58,7 @@ export const CheckLevel =() => {
   const [ isHasResult, setIsHasResult ] = useState(false);
   const [ question, setQuestion ] = useState<{id: string,sentence?: string, options?: any[]}[]>([]);
 
-  const { setToStorage } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
+  const { setToStorage } = useAuth();
   const { loading, sendRequest } = useHttpClient();
 
   const fetchData = async () => {

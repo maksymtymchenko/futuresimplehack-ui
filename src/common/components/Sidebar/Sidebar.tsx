@@ -11,10 +11,9 @@ import ModeIcon from '@mui/icons-material/Mode';
 import TranslateIcon from '@mui/icons-material/Translate';
 import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 import ContentPasteRoundedIcon from '@mui/icons-material/ContentPasteRounded';
-import { useAuthLocalStorage } from '../../hooks/useAuthLocalStorage';
-import { LOCALSTORAGE_AUTH_KEY } from '../../constants';
 import { Button } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
+import {useAuth} from "../AuthProvider/AuthProvider";
 
 export const sidebarItem = [
   { title: 'Програма', route: '/program', Icon: InboxIcon },
@@ -27,7 +26,7 @@ export const sidebarItem = [
 
 export const Sidebar = () => {
   const { pathname } = useLocation();
-  const { logOut } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
+  const { logOut } = useAuth();
 
   const ListItemComponent = useMemo(() => {
     return forwardRef<HTMLAnchorElement, { to: string }>(({ to, ...linkProps }, ref) => (
