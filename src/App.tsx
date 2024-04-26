@@ -12,18 +12,23 @@ import { Achievements } from './common/components/Achievements';
 
 const App = () =>  {
   const { authStore } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
-  const [ state, setState ] = useState<any>();
+
+  const auth = JSON.parse(localStorage.getItem(LOCALSTORAGE_AUTH_KEY) || '{}');
+  const [ state, setState ] = useState<any>(auth.isHasLevel);
+
+  const updateAuth = () => {
+    const key = JSON.parse(localStorage.getItem(LOCALSTORAGE_AUTH_KEY) || '{}');
+    if(key) {
+      setState(key.isHasLevel);
+    }
+  };
 
   //TODO: fix
   useEffect(() => {
-    window.addEventListener('storage', () => {
-      const key = JSON.parse(localStorage.getItem(LOCALSTORAGE_AUTH_KEY) || '{}');
-      if(key) {
-        setState(key.isHasLevel);
-      }
-    });
-  }, [ state ]);
+    window.addEventListener('storage', updateAuth);
 
+    return () => window.removeEventListener('storage', updateAuth);
+  });
 
   return (
     <AppConfigWrapper>

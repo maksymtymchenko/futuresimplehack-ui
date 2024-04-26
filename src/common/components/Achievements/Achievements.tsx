@@ -4,8 +4,8 @@ import Typography from '@mui/material/Typography';
 import video  from '../../static/videos/1.mp4';
 import { useHttpClient } from '../../hooks/useHttpClient';
 import { API_URL } from '../../constants';
-import {useEffect, useMemo, useRef, useState} from 'react';
-import {phrases} from "./constants";
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { phrases } from './constants';
 
 const StyledCountGrid = styled(Grid)({
   border: '1px solid rgba(231, 238, 243, 1)',
@@ -24,25 +24,25 @@ export const Achievements =( ) => {
   const[ achievements, setAchievements ] = useState<Record<string, number>>({});
   const { loading, sendRequest } = useHttpClient();
 
-  const isFirstRender = useRef(true)
+  const isFirstRender = useRef(true);
 
-  console.log(isFirstRender)
+  console.log(isFirstRender);
 
   const [ showHelpElement,setShowHelpElement ] = useState(true);
 
   useEffect(()=>{
     const timeout = setTimeout(function() {
       setShowHelpElement(prevState => !prevState);
-      isFirstRender.current = false
-      clearTimeout(timeout)
+      isFirstRender.current = false;
+      return () => clearTimeout(timeout);
     }, 7000);
   },
-  [showHelpElement]);
+  [ showHelpElement ]);
 
   const getRandomPhrase = useMemo(() => {
     const index = Math.floor(Math.random() * phrases.length);
     return phrases[index];
-  }, [showHelpElement]);
+  }, [ showHelpElement ]);
 
 
   const fetchData = async () => {
@@ -73,7 +73,7 @@ export const Achievements =( ) => {
   const { averageMark,  finishedLessons, finishedProgram, lastMark, learntWords, spentHours } = achievements || {};
 
 
-  return <Grid container  direction='column' sx={{ maxWidth: '330px', padding: '10px 30px', position: 'fixed', right: 0,top: 90, bottom: 90 }}>
+  return <Grid container  direction='column' sx={{ maxWidth: '330px', padding: '10px 30px', position: 'fixed', right: 0, bottom: 90 }}>
     <Grid item xs={1} p={3} display='flex' justifyContent='center' alignItems='center'>
       <Typography variant='h5'>Твої досягення</Typography>
     </Grid>
@@ -119,7 +119,7 @@ export const Achievements =( ) => {
     <Grid item container display='flex' justifyContent='center' alignItems='center'>
       <Grid item mb={1} style={{
         opacity: showHelpElement ? 1 : 0,
-        transition: 'opacity 1s ease',
+        transition: 'opacity 1s ease'
       }}>
         <Paper sx={{ padding: '15px' }}>
           <Typography gutterBottom variant='body2'>{getRandomPhrase}</Typography>
@@ -130,7 +130,7 @@ export const Achievements =( ) => {
         </Paper>
       </Grid>
       <Grid item>
-        <video style={{ width: 120, height: 190, padding: 0, transform: 'scale(1.2)' }} loop={showHelpElement} autoPlay={showHelpElement} src={video}></video>
+        <video style={{ width: 120, height: 190, padding: 0, transform: 'scale(1.2)' }} loop autoPlay src={video}></video>
       </Grid>
     </Grid>
   </Grid>;

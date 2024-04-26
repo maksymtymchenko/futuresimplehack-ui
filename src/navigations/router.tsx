@@ -13,34 +13,37 @@ import { ProgramLesson } from '../pages/Program/ProgramLesson';
 import { Grammar } from '../pages/Grammar/Grammar';
 import { GrammarModule } from '../pages/Grammar/GrammarModule';
 import { GrammarLesson } from '../pages/Grammar/GrammarLesson';
+import { useEffect, useState } from 'react';
 
 
 export const AppRoutes = () => {
   const { authStore } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
 
   if (authStore.isAuth){
-    return <Routes>
-      <Route path='/special-settings' element={<SpecialSettings />} />
-      <Route path='/check-level' element={<CheckLevel />} />
-      <Route path='/program' element={<Program/>} />
-      <Route path='/program/:unitId' element={<ProgramUnit/>} />
-      <Route path='/program/:unitId/:lessonId' element={<ProgramLesson/>} />
-      <Route path='/grammar' element={<Grammar/>} />
-      <Route path='/grammar/:moduleId' element={<GrammarModule/>} />
-      <Route path='/grammar/:moduleId/:lessonId' element={<GrammarLesson/>} />
-      <Route path='/translator' element={<Translator/>} />
-      <Route path='/dictionary' element={<Dictionary/>} />
-      <Route path='/irregular-verbs' element={<IrregularVerbsTable/>} />
+    return (
+      <Routes>
+        <Route path='/special-settings' element={<SpecialSettings />} />
+        <Route path='/check-level' element={<CheckLevel />} />
+        <Route path='/program' element={<Program/>} />
+        <Route path='/program/:unitId' element={<ProgramUnit/>} />
+        <Route path='/program/:unitId/:lessonId' element={<ProgramLesson/>} />
+        <Route path='/grammar' element={<Grammar/>} />
+        <Route path='/grammar/:moduleId' element={<GrammarModule/>} />
+        <Route path='/grammar/:moduleId/:lessonId' element={<GrammarLesson/>} />
+        <Route path='/translator' element={<Translator/>} />
+        <Route path='/dictionary' element={<Dictionary/>} />
+        <Route path='/irregular-verbs' element={<IrregularVerbsTable/>} />
 
-      <Route path='*' element={<Navigate to='/special-settings' />} />
-    </Routes>;
+        {/*<Route path='*' element={<Navigate to='/special-settings' />} />*/}
+      </Routes>
+    );
   }
 
   return (
     <Routes>
       <Route path='/auth' element={<Auth />} />
 
-      <Route path='*' element={<Navigate to='/auth' />} />
+      <Route path='/' element={<Navigate to='/auth' />} />
     </Routes>
   );
 };

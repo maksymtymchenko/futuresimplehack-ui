@@ -1,5 +1,5 @@
 import React, { useMemo, forwardRef, Ref } from 'react';
-import {NavLink, useLocation, useMatch, useNavigation} from 'react-router-dom';
+import { NavLink, useLocation, useMatch, useNavigate, useNavigation } from 'react-router-dom';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -13,7 +13,7 @@ import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 import ContentPasteRoundedIcon from '@mui/icons-material/ContentPasteRounded';
 import { useAuthLocalStorage } from '../../hooks/useAuthLocalStorage';
 import { LOCALSTORAGE_AUTH_KEY } from '../../constants';
-import {Button} from "@mui/material";
+import { Button } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 export const sidebarItem = [
@@ -27,7 +27,18 @@ export const sidebarItem = [
 
 export const Sidebar = () => {
   const { pathname } = useLocation();
-  const { logOut } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
+  // const { logOut } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
+
+  const navigate = useNavigate();
+  const goHome = () => navigate('/auth');
+
+  const logout = () => {
+    localStorage.removeItem(LOCALSTORAGE_AUTH_KEY);
+    goHome();
+
+    // mock auth reloading
+    window.location.reload();
+  };
 
   const ListItemComponent = useMemo(() => {
     return forwardRef<HTMLAnchorElement, { to: string }>(({ to, ...linkProps }, ref) => (
@@ -42,7 +53,7 @@ export const Sidebar = () => {
         {...linkProps}
       />
     ));
-  }, [pathname]);
+  }, [ pathname ]);
 
   return (
     <List sx={{ top: 76, position: 'fixed', width: '350px',height: '100vh',zIndex: 0, backgroundColor: 'rgba(231, 238, 243, 1)' }}>
@@ -50,16 +61,16 @@ export const Sidebar = () => {
         <ListItem key={title} disablePadding>
           <ListItemButton component={ListItemComponent} to={route}>
             <ListItemIcon>
-              <Icon  sx={{ color:  pathname.startsWith(route) ? 'white': 'rgba(0, 0, 0, 1)'}}/>
+              <Icon  sx={{ color:  pathname.startsWith(route) ? 'white': 'rgba(0, 0, 0, 1)' }}/>
             </ListItemIcon>
             <ListItemText primary={title} />
             <ListItemIcon>
-              <KeyboardArrowRightIcon  sx={{ color: pathname.startsWith(route)  ? 'white': 'rgba(0, 0, 0, 1)'}} />
+              <KeyboardArrowRightIcon  sx={{ color: pathname.startsWith(route)  ? 'white': 'rgba(0, 0, 0, 1)' }} />
             </ListItemIcon>
           </ListItemButton>
         </ListItem>
       ))}
-      <Button fullWidth onClick={logOut} sx={{ padding: 2, position: 'absolute', bottom: 165}} startIcon={<LogoutIcon />}>Вийти</Button>
+      <Button fullWidth onClick={logout} sx={{ padding: 2, position: 'absolute', bottom: 165 }} startIcon={<LogoutIcon />}>Вийти</Button>
     </List>
   );
 };
