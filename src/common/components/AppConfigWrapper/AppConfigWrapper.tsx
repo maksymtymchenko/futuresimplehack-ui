@@ -44,6 +44,8 @@ export const AppConfigWrapper = ({ children }: { children: ReactElement}) => {
   const resetSettings =()=> {
     setMode(AppModeEnum.main);
     setFontSize(1);
+    localStorage.setItem(THEME_SETTINGS_MODE_KEY, AppModeEnum.main);
+    localStorage.setItem(THEME_SETTINGS_FONT_KEY, String(1));
   };
 
   const appSettings = useMemo(
