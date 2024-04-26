@@ -57,6 +57,11 @@ export const createTypographyTheme = (value: number) => {
       fontSize: `${ 14 + scaledValue }px`,
       lineHeight: `${ 18 + scaledValue }px`,
       fontFamily: 'e-Ukraine'
+    },
+    caption: {
+      fontSize: `${ 13 + scaledValue }px`,
+      lineHeight: `${ 18 + scaledValue }px`,
+      fontFamily: 'e-Ukraine'
     }
   };
 };

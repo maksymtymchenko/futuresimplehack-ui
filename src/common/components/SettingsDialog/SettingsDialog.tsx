@@ -6,7 +6,7 @@ import {
   Popover,
   DialogTitle,
   Grid,
-  IconButton, styled
+  IconButton, styled, SvgIcon
 } from '@mui/material';
 import { useContext, useState } from 'react';
 import Typography from '@mui/material/Typography';
@@ -16,6 +16,8 @@ import { AppSettingsContext } from '../../context/AppSettingsContext';
 import CloseIcon from '@mui/icons-material/Close';
 
 import EyeIcon from '../../static/images/EyeIcon.png';
+import blackIcon from '../../static/icons/blackStyleIcon.svg';
+import ukraineColorIcon from '../../static/icons/ukraineColorIcon.svg';
 
 const StyledButton = styled(Button)({
   color: 'rgba(0, 0, 0, 1)',
@@ -27,8 +29,8 @@ const StyledButton = styled(Button)({
 const StyledActionButton = styled(Button)({
   color: 'rgba(0, 0, 0, 1)',
   border: '1px solid rgba(0, 0, 0, 1)',
-  padding: '16px',
-  fontSize: '16px'
+  padding: '16px'
+  // fontSize: '16px'
 });
 
 const StyledResetButton = styled(Button)({
@@ -41,16 +43,16 @@ const StyledResetButton = styled(Button)({
 
 export const SettingsDialog = () => {
   const [ anchorEl, setAnchorEl ] = useState(null);
-  const { toggleColorMode, toggleFontSize, resetSettings } = useContext(AppSettingsContext);
+  const { toggleColorMode, toggleFontSize, resetSettings, toggleBlackMode } = useContext(AppSettingsContext);
 
 
   const handleClickDialog = (event: any) => setAnchorEl(event.currentTarget);
 
-  const handleCloseDialog = (event: any) => setAnchorEl(null);
+  const handleCloseDialog = () => setAnchorEl(null);
 
   return <>
     <StyledButton onClick={handleClickDialog} startIcon={<img src={EyeIcon} alt='Eye icon'/>}>
-      Людям з порушенням зору
+      <Typography variant='caption'>Людям з порушенням зору</Typography>
     </StyledButton>
     <Popover
       slotProps={{
@@ -78,8 +80,8 @@ export const SettingsDialog = () => {
           <Grid item>
             <Typography gutterBottom variant='h5'>Колір</Typography>
             <Box display='flex' gap={1}>
-              <StyledActionButton startIcon={<InvertColorsIcon/>} onClick={toggleColorMode} variant='outlined'>Ч/Б</StyledActionButton>
-              <StyledActionButton startIcon={<InvertColorsIcon/>} onClick={toggleColorMode} variant='outlined'>Колір</StyledActionButton>
+              <StyledActionButton startIcon={<img src={blackIcon} />} onClick={toggleBlackMode} variant='outlined'>Ч/Б</StyledActionButton>
+              <StyledActionButton startIcon={<img src={ukraineColorIcon}/>} onClick={toggleColorMode} variant='outlined'>Колір</StyledActionButton>
             </Box>
           </Grid>
         </Grid>

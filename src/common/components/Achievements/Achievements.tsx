@@ -77,25 +77,25 @@ export const Achievements =( ) => {
     <Grid container mb={3} spacing={2} display='flex' justifyContent='center' alignItems='center'>
       <Grid item xs={6} container justifyContent='center'>
         <StyledCountGrid item>
-          <Typography variant='h2'>{finishedLessons}</Typography>
+          <Typography variant='h3'>{finishedLessons}</Typography>
           <Typography variant='body2'>уроків пройдено</Typography>
         </StyledCountGrid>
       </Grid>
       <Grid item xs={6} container justifyContent='center'>
         <StyledCountGrid item>
-          <Typography variant='h2'>{learntWords}</Typography>
+          <Typography variant='h3'>{learntWords}</Typography>
           <Typography variant='body2'>слів вивчено</Typography>
         </StyledCountGrid>
       </Grid>
       <Grid item xs={6} container justifyContent='center'>
         <StyledCountGrid item>
-          <Typography variant='h2'>{finishedProgram}%</Typography>
+          <Typography variant='h3'>{finishedProgram}%</Typography>
           <Typography variant='body2'>виконаної програми</Typography>
         </StyledCountGrid>
       </Grid>
       <Grid item xs={6} container justifyContent='center'>
         <StyledCountGrid item>
-          <Typography variant='h2'>{spentHours}</Typography>
+          <Typography variant='h3'>{spentHours}</Typography>
           <Typography variant='body2'>хвилин на платформі</Typography>
         </StyledCountGrid>
       </Grid>
