@@ -12,6 +12,7 @@ import { useHttpClient } from '../common/hooks/useHttpClient';
 import { API_URL } from '../common/constants';
 import { AnswerItem } from '../common/components/UI/AnswerItem';
 import { PageLoader } from '../common/components/PageLoader';
+import { VideoComponent } from '../common/components/VideoComponent';
 import { useAuth } from '../common/components/AuthProvider/AuthProvider';
 
 interface TabPanelProps {
@@ -56,7 +57,7 @@ export const CheckLevel =() => {
   const navigate = useNavigate();
   const [ value, setValue ] = useState(0);
   const [ isHasResult, setIsHasResult ] = useState(false);
-  const [ question, setQuestion ] = useState<{id: string,sentence?: string, options?: any[]}[]>([]);
+  const [ question, setQuestion ] = useState<{id: string,sentence?: string, options?: any[], url?: string}[]>([]);
 
   const { setToStorage } = useAuth();
   const { loading, sendRequest } = useHttpClient();
@@ -64,8 +65,9 @@ export const CheckLevel =() => {
   const fetchData = async () => {
     try {
       const data = await sendRequest({ method: 'GET', url: `${ API_URL }/sentences` });
+      const filteredData = data.filter((item: any) => item._id !== '6626163c31d714ab051d2f3e');
 
-      setQuestion(data);
+      setQuestion(filteredData);
     } catch (error){
       console.error(error);
     }
@@ -137,14 +139,15 @@ export const CheckLevel =() => {
   }
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', position: 'relative', top: '-62px' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange}>
-          {question?.map((item, index) =>  <Tab label={String(index+1)} sx={{ width: '25%' }}  {...a11yProps(index)} />)}
+          {question?.map((item, index) =>  <Tab label='' sx={{ width: '25%' }}  {...a11yProps(index)} />)}
         </Tabs>
       </Box>
       {question?.map((item, index) => ( <CustomTabPanel value={value} index={index}>
         <Typography gutterBottom variant='h2'>{item.sentence}</Typography>
+        {item.url && <VideoComponent videoUrl={item.url} />}
         <Grid item container spacing={2} display='flex' >
           {item?.options?.map(item => (
             <Grid item xs={6} key={item.id}>
