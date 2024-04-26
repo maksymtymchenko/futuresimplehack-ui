@@ -3,11 +3,17 @@ import { AppConfigWrapper } from './common/components/AppConfigWrapper';
 import { Header } from './common/components/Header';
 import { Footer } from './common/components/Footer';
 import { AppRoutes } from './navigations/router';
-import { LOCALSTORAGE_AUTH_KEY } from './common/constants';
 import { Sidebar } from './common/components/Sidebar';
-import { useEffect, useState } from 'react';
 import { Achievements } from './common/components/Achievements';
 import { AuthProvider, useAuth } from './common/components/AuthProvider/AuthProvider';
+import { Box, styled } from '@mui/material';
+
+
+const StyledBox = styled(Box)({
+  // filter: 'grayscale(1)',
+  width: '100%',
+  height: '100%'
+});
 
 
 const App = () =>  {
@@ -15,7 +21,7 @@ const App = () =>  {
 
   return (
     <AppConfigWrapper>
-      <>
+      <StyledBox>
         { authStore.isAuth && <Header/>}
         <div style={{ display: 'flex' }}>
           { authStore.isHasLevel && <Sidebar/>}
@@ -25,7 +31,7 @@ const App = () =>  {
           </div>
         </div>
         { authStore.isAuth  && <Footer/>}
-      </>
+      </StyledBox>
     </AppConfigWrapper>
   );
 };
