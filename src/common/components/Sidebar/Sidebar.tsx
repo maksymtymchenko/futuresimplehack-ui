@@ -27,18 +27,7 @@ export const sidebarItem = [
 
 export const Sidebar = () => {
   const { pathname } = useLocation();
-  // const { logOut } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
-
-  const navigate = useNavigate();
-  const goHome = () => navigate('/auth');
-
-  const logout = () => {
-    localStorage.removeItem(LOCALSTORAGE_AUTH_KEY);
-    goHome();
-
-    // mock auth reloading
-    window.location.reload();
-  };
+  const { logOut } = useAuthLocalStorage(LOCALSTORAGE_AUTH_KEY);
 
   const ListItemComponent = useMemo(() => {
     return forwardRef<HTMLAnchorElement, { to: string }>(({ to, ...linkProps }, ref) => (
@@ -70,7 +59,7 @@ export const Sidebar = () => {
           </ListItemButton>
         </ListItem>
       ))}
-      <Button fullWidth onClick={logout} sx={{ padding: 2, position: 'absolute', bottom: 165 }} startIcon={<LogoutIcon />}>Вийти</Button>
+      <Button fullWidth onClick={logOut} sx={{ padding: 2, position: 'absolute', bottom: 165 }} startIcon={<LogoutIcon />}>Вийти</Button>
     </List>
   );
 };

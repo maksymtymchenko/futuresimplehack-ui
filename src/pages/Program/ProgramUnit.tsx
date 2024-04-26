@@ -2,17 +2,17 @@ import { Grid, Icon, IconButton } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import { ProgramUnitItem } from './components/ProgramUnitItem';
-import { unitsLessons} from "./constants";
-import {Breadcrumb} from "../../common/components/Breadcrumb";
+import { unitsLessons } from './constants';
+import { Breadcrumb } from '../../common/components/Breadcrumb';
 
 
 const breadcrumbItems = [
   { href: '/program', label: 'Програма' },
-  { href: '/program/unit1', label: 'Unit 1' },
+  { href: '/program/unit1', label: 'Unit 1' }
 ];
 
 export const ProgramUnit = () => {
-  const { title, units } = unitsLessons
+  const { title, units } = unitsLessons;
 
   const handleBack = () => window.history.back();
 
@@ -24,7 +24,7 @@ export const ProgramUnit = () => {
     </Grid>
 
     <Grid container direction='column' spacing={3}>
-      {units.map(({title, lessons, disabled}) => (
+      {units.map(({ title, lessons, disabled }) => (
         <Grid item>
           <ProgramUnitItem title={title} lessons={lessons} disabled={disabled}/>
         </Grid>

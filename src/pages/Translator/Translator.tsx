@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Grid, Paper, Typography, TextField, IconButton } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {useMemo, useState} from 'react';
+import { useMemo, useState } from 'react';
 import { API_URL } from '../../common/constants';
 import { useHttpClient } from '../../common/hooks/useHttpClient';
 
@@ -59,7 +59,7 @@ export const Translator = () => {
 
     <Grid item container display='flex' >
       <Grid item xs={5}>
-        {firstSectionFirst ? ( <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px'}}>
+        {firstSectionFirst ? ( <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px' }}>
           <Typography variant='h3'>English</Typography>
           <TextField
             variant='filled'
@@ -73,7 +73,7 @@ export const Translator = () => {
               style: { backgroundColor: 'white' }
             }}
           />
-        </Paper>):  ( <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px'}}>
+        </Paper>):  ( <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px' }}>
           <Typography variant='h3'>Ukrainian</Typography>
           <TextField
             variant='filled'
@@ -99,7 +99,7 @@ export const Translator = () => {
 
 
       <Grid item xs={5} >
-        {firstSectionFirst ? <Paper elevation={0} style={{padding: 20, border: '2px solid #E7EEF3', height: '500px'}}>
+        {firstSectionFirst ? <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px' }}>
           <Typography variant='h3'>Ukrainian</Typography>
           <TextField
             variant='filled'
@@ -108,10 +108,10 @@ export const Translator = () => {
             value={ukInputValue}
             InputProps={{
               disableUnderline: true,
-              style: {backgroundColor: 'white'}
+              style: { backgroundColor: 'white' }
             }}
           />
-        </Paper> : <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px'}}>
+        </Paper> : <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px' }}>
           <Typography variant='h3'>English</Typography>
           <TextField
             variant='filled'
@@ -128,5 +128,5 @@ export const Translator = () => {
         </Paper>}
       </Grid>
     </Grid>
-  </Grid>
+  </Grid>;
 };

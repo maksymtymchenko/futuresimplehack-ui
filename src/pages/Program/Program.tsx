@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 import { Grid, IconButton, Paper, styled } from '@mui/material';
 import { ProgramItem } from './components/ProgramItem';
-import {lessons} from "./constants";
+import { lessons } from './constants';
 
 const StyledPaper = styled(Paper)({
   padding: '20px',
@@ -14,7 +14,7 @@ export const Program = () => {
       <Typography variant='h2'>Програма: B1 Level</Typography>
     </Grid>
 
-    {lessons.map(({ title, lessons, disabled})=> (
+    {lessons.map(({ title, lessons, disabled })=> (
       <Grid item>
         <ProgramItem disabled={disabled} lessons={lessons} title={title}/>
       </Grid>

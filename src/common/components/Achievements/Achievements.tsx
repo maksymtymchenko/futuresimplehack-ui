@@ -24,16 +24,12 @@ export const Achievements =( ) => {
   const[ achievements, setAchievements ] = useState<Record<string, number>>({});
   const { loading, sendRequest } = useHttpClient();
 
-  const isFirstRender = useRef(true);
-
-  console.log(isFirstRender);
-
   const [ showHelpElement,setShowHelpElement ] = useState(true);
 
   useEffect(()=>{
     const timeout = setTimeout(function() {
       setShowHelpElement(prevState => !prevState);
-      isFirstRender.current = false;
+      clearTimeout(timeout);
       return () => clearTimeout(timeout);
     }, 7000);
   },
@@ -123,10 +119,6 @@ export const Achievements =( ) => {
       }}>
         <Paper sx={{ padding: '15px' }}>
           <Typography gutterBottom variant='body2'>{getRandomPhrase}</Typography>
-          {/*{isFirstRender.current ? <>*/}
-          {/*  <Typography gutterBottom variant='body2'>Хей, баді! Перший юніт вже чекає на тебе!</Typography>*/}
-          {/*</> : <><Typography gutterBottom variant='h5'>Агов, друже! Не втрачай мотівейшн!</Typography>*/}
-          {/*</>}*/}
         </Paper>
       </Grid>
       <Grid item>

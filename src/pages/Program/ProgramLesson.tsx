@@ -16,7 +16,7 @@ import { READING, terminology, questions, grammarRows1, SPANISH_CLASS_EMAIL, NEW
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import {Breadcrumb} from "../../common/components/Breadcrumb";
+import { Breadcrumb } from '../../common/components/Breadcrumb';
 
 const StyledAccordion = styled(Accordion)({
   backgroundColor: 'rgba(231, 238, 243, 0.5)',
@@ -34,7 +34,7 @@ const StyledListItemText = styled(ListItemText)({
 const breadcrumbItems = [
   { href: '/program', label: 'Програма' },
   { href: '/program/unit1', label: 'Unit 1' },
-  { href: '/program/unit1/lesson1', label: 'Lesson 1' },
+  { href: '/program/unit1/lesson1', label: 'Lesson 1' }
 ];
 
 export const ProgramLesson = () => {
@@ -68,7 +68,7 @@ export const ProgramLesson = () => {
             {terminology.map(({ term, definition }, index) => (
               <ListItem key={index}>
                 <StyledListItemText
-                  primary={<Typography sx={{ mr: '5px'}} variant='subtitle2' fontWeight='bold'>{term} -</Typography>}
+                  primary={<Typography sx={{ mr: '5px' }} variant='subtitle2' fontWeight='bold'>{term} -</Typography>}
                   secondary={<Typography variant='body2' >{definition}</Typography>}
                 />
               </ListItem>
