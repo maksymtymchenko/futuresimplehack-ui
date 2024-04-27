@@ -51,9 +51,9 @@ export const Translator = () => {
     </Grid>
 
 
-    <Grid item container display='flex' >
-      <Grid item xs={5}>
-        <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px' }}>
+    <Grid item container display='flex'>
+      <Grid item xs={5} style={{ width: '400px' }}>
+        <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px', width: '350px' }}>
           <Typography variant='h3'>English</Typography>
           <TextField
             variant='filled'
@@ -76,7 +76,7 @@ export const Translator = () => {
 
 
       <Grid item xs={5} >
-        <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px' }}>
+        <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px', width: '350px', marginLeft: 60 }}>
           <Typography variant='h3'>Ukrainian</Typography>
           <TextField
             variant='filled'
