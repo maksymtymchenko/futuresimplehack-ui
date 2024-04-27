@@ -1,4 +1,4 @@
-import { Grid, Icon, IconButton } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import { ProgramUnitItem } from './components/ProgramUnitItem';

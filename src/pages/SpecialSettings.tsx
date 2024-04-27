@@ -1,10 +1,9 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Box, Button, Checkbox, Grid, styled } from '@mui/material';
+import { Box, Button, Grid, styled } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useNavigate } from 'react-router-dom';
-import { API_URL, LOCALSTORAGE_AUTH_KEY } from '../common/constants';
+import { API_URL } from '../common/constants';
 import { PageLoader } from '../common/components/PageLoader';
 import { useHttpClient } from '../common/hooks/useHttpClient';
 import { AnswerItem } from '../common/components/UI/AnswerItem';

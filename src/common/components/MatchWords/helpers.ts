@@ -1,5 +1,3 @@
-import { IMatchWords } from './MatchWords';
-
 export const transformWords = (match: {
   id: number,
   eng: string,

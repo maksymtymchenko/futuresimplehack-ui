@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Grid, Paper, Typography, TextField, IconButton } from '@mui/material';
+import { Grid, Paper, Typography, TextField, IconButton, Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useMemo, useState } from 'react';
@@ -21,12 +21,6 @@ export const Translator = () => {
   const handleSectionChange = (e: any) => {
     const value = e.target.value;
     setEnInputValue(value);
-  };
-
-  const onEnterPresed = (e: any) => {
-    if(e.key === 'Enter') {
-      translateWord();
-    }
   };
 
   const translateWord = async () => {
@@ -59,47 +53,30 @@ export const Translator = () => {
 
     <Grid item container display='flex' >
       <Grid item xs={5}>
-        {firstSectionFirst ? ( <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px' }}>
+        <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px' }}>
           <Typography variant='h3'>English</Typography>
           <TextField
             variant='filled'
             fullWidth
             margin='normal'
             onChange={handleSectionChange}
-            onKeyPress={onEnterPresed}
             value={enInputValue}
             InputProps={{
               disableUnderline: true,
               style: { backgroundColor: 'white' }
             }}
           />
-        </Paper>):  ( <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px' }}>
-          <Typography variant='h3'>Ukrainian</Typography>
-          <TextField
-            variant='filled'
-            fullWidth
-            margin='normal'
-            value={ukInputValue}
-            InputProps={{
-              disableUnderline: true,
-              style: { backgroundColor: 'white' }
-            }}
-          />
-        </Paper>)}
+        </Paper>
       </Grid>
-
-      <Grid item xs={2} style={{ textAlign: 'center' }}>
-        <IconButton  style={{ backgroundColor: 'black', color: 'white', borderRadius: '50%', width: '50px', height: '50px' }}  color='primary' onClick={toggleSectionOrder}>
-          <Grid container direction='column' alignItems='center'>
-            <ArrowForwardIcon />
-            <ArrowBackIcon/>
-          </Grid>
-        </IconButton>
+      <Grid item xs={2} style={{ textAlign: 'center' }} pt={11}>
+        <Button variant='outlined' sx={{ borderRadius: '8px', p: 2 }} onClick={translateWord} endIcon={<ArrowForwardIcon />}>
+          <Typography  variant='body2' >Перекласти</Typography>
+        </Button>
       </Grid>
 
 
       <Grid item xs={5} >
-        {firstSectionFirst ? <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px' }}>
+        <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px' }}>
           <Typography variant='h3'>Ukrainian</Typography>
           <TextField
             variant='filled'
@@ -111,21 +88,7 @@ export const Translator = () => {
               style: { backgroundColor: 'white' }
             }}
           />
-        </Paper> : <Paper elevation={0} style={{ padding: 20, border: '2px solid #E7EEF3', height: '500px' }}>
-          <Typography variant='h3'>English</Typography>
-          <TextField
-            variant='filled'
-            fullWidth
-            margin='normal'
-            onChange={handleSectionChange}
-            onKeyPress={onEnterPresed}
-            value={enInputValue}
-            InputProps={{
-              disableUnderline: true,
-              style: { backgroundColor: 'white' }
-            }}
-          />
-        </Paper>}
+        </Paper>
       </Grid>
     </Grid>
   </Grid>;

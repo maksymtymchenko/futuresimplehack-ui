@@ -8,7 +8,6 @@ import React from 'react';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { SettingsDialog } from '../common/components/SettingsDialog';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../common/components/AuthProvider/AuthProvider';
 
 
@@ -25,17 +24,9 @@ const StyledButton = styled(Button)({
 export const Auth = () => {
   const { setToStorage } = useAuth();
 
-  const navigate = useNavigate();
-
-  // const goBack = () => navigate('/special-settings');
-
   const handleAuth = () => {
     setToStorage({ isAuth: true, isInstallSpecialSettings: false, isHasLevel: false });
-    // goBack();
-    // // mock auth reloading
-    // window.location.reload();
   };
-
 
   return  (<Grid container>
     <Grid item container direction='column' position='relative'  xs={6} sx={{ height: '100vh',background: 'radial-gradient(129.89% 100% at 100% 100%, #DEEFD7 0%, #B6D8ED 49.82%, #D1E2EF 100%)' }}>

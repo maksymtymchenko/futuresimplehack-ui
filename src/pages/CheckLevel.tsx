@@ -2,9 +2,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { PieChart } from '@mui/x-charts/PieChart';
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { ReactNode, SyntheticEvent, useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
-import { Button, Checkbox, Grid, styled } from '@mui/material';
+import { Button, Grid, styled } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ import { VideoComponent } from '../common/components/VideoComponent';
 import { useAuth } from '../common/components/AuthProvider/AuthProvider';
 
 interface TabPanelProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   index: number;
   value: number;
 }
@@ -151,7 +151,7 @@ export const CheckLevel =() => {
         <Grid item container spacing={2} display='flex' >
           {item?.options?.map(item => (
             <Grid item xs={6} key={item.id}>
-              <AnswerItem title={item.option}/>
+              <AnswerItem title={item.option} isCorrect={item?.correct}/>
             </Grid>
           ))}
         </Grid>

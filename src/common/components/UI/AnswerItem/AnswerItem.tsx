@@ -18,7 +18,8 @@ export const AnswerItem = ({ title, isCorrect }: { title: string, isCorrect?: bo
         alignItems: 'center',
         padding: 2,
         m: 1,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        ...( checked ? { border: `2px solid ${ isCorrect? 'rgba(4, 198, 93, 0.2)' : 'rgba(224,33,33,0.2)' }` }: {})
       }}
       onClick={handleClick}
     >

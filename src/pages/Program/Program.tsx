@@ -1,12 +1,8 @@
 import Typography from '@mui/material/Typography';
-import { Grid, IconButton, Paper, styled } from '@mui/material';
+import { Grid } from '@mui/material';
 import { ProgramItem } from './components/ProgramItem';
 import { lessons } from './constants';
 
-const StyledPaper = styled(Paper)({
-  padding: '20px',
-  margin: '30px 0px'
-});
 
 export const Program = () => {
   return <Grid container direction='column' spacing={3}>

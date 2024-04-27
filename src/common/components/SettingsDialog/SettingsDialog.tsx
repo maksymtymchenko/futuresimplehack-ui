@@ -6,11 +6,10 @@ import {
   Popover,
   DialogTitle,
   Grid,
-  IconButton, styled, SvgIcon
+  IconButton, styled
 } from '@mui/material';
 import { useContext, useState } from 'react';
 import Typography from '@mui/material/Typography';
-import InvertColorsIcon from '@mui/icons-material/InvertColors';
 import RotateLeftIcon from '@mui/icons-material/RotateLeft';
 import { AppSettingsContext } from '../../context/AppSettingsContext';
 import CloseIcon from '@mui/icons-material/Close';
@@ -30,7 +29,7 @@ const StyledActionButton = styled(Button)({
   color: 'rgba(0, 0, 0, 1)',
   border: '1px solid rgba(0, 0, 0, 1)',
   padding: '16px'
-  // fontSize: '16px'
+
 });
 
 const StyledResetButton = styled(Button)({
@@ -80,8 +79,14 @@ export const SettingsDialog = () => {
           <Grid item>
             <Typography gutterBottom variant='h5'>Колір</Typography>
             <Box display='flex' gap={1}>
-              <StyledActionButton startIcon={<img src={blackIcon} />} onClick={toggleBlackMode} variant='outlined'>Ч/Б</StyledActionButton>
-              <StyledActionButton startIcon={<img src={ukraineColorIcon}/>} onClick={toggleColorMode} variant='outlined'>Колір</StyledActionButton>
+              <StyledActionButton
+                startIcon={<img src={blackIcon}  alt='black icon'/>}
+                onClick={toggleBlackMode} variant='outlined'
+              >Ч/Б</StyledActionButton>
+              <StyledActionButton
+                startIcon={<img src={ukraineColorIcon} alt='color icon'/>}
+                onClick={toggleColorMode} variant='outlined'
+              >Колір</StyledActionButton>
             </Box>
           </Grid>
         </Grid>
